@@ -16,10 +16,9 @@ const methods = {
                 con.connect((err) =>
                 {
                     if (err) reject(err);
-                    con.query('SELECT * FROM users', (error, result, field) =>
+                    con.query(`SELECT * FROM ${process.env.DB_TABLE}`, (error, result, field) =>
                     {
                         if (error) reject(error);
-                        console.log(`result: ${result}`);
                         resolve(result);
                     });
                 });

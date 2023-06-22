@@ -6,7 +6,7 @@ const methods = {
         try
         {
             let list = await userServices.getAll();
-            console.log(`controller: ${list}`);
+            console.log(list);
             res.send(list);
 
         } catch (err)
