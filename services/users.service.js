@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-
+require('dotenv').config();
 const methods = {
     getAll()
     {
@@ -8,10 +8,10 @@ const methods = {
             try
             {
                 let con = mysql.createConnection({
-                    host: 'localhost',
-                    user: 'root',
-                    password: '',
-                    database: 'devdb'
+                    host: process.env.DB_HOST,
+                    user: process.env.DB_USERNAME,
+                    password: process.env.DB_PASSWORD,
+                    database: process.env.DB_DATABASE
                 });
                 con.connect((err) =>
                 {
