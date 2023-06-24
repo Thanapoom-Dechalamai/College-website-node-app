@@ -1,0 +1,178 @@
+{
+    "student": [
+        {
+            "comment": "Get all students",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/student/getAll",
+            "method": "GET",
+            "example": {
+                "status": true,
+                "result": [
+                    {
+                        "primary_student_ID": 1,
+                        "student_ID": 17903,
+                        "student_position": 1,
+                        "student_first_name": "Nawee",
+                        "student_last_name": "Moongmart",
+                        "student_nickname": "Nawee",
+                        "student_first_name_thai": "นาวี",
+                        "student_last_name_thai": "มุ่งมาตร์",
+                        "student_nickname_thai": "นาวี",
+                        "student_gender": 2,
+                        "student_major": 6,
+                        "student_level": 3,
+                        "student_class": 3,
+                        "student_phone": "0610421298",
+                        "student_line_ID": "orurio345",
+                        "student_image": "",
+                        "student_email": "nawee.moo@sbacnon.ac.th",
+                        "student_password": "UwU"
+                    }
+                ]
+            }
+        },
+        {
+            "comment": "Create one student",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/student/create",
+            "method": "POST",
+            "example": {
+                "student_ID": 12345,
+                "student_position": 1,
+                "student_first_name": "Test",
+                "student_last_name": "Test",
+                "student_nickname": "Test",
+                "student_first_name_thai": "Test",
+                "student_last_name_thai": "Test",
+                "student_nickname_thai": "Test",
+                "student_gender": 1,
+                "student_major": 1,
+                "student_level": 1,
+                "student_class": 1,
+                "student_phone": "0999999999",
+                "student_line_ID": "Test",
+                "student_image": "Test",
+                "student_email": "Test",
+                "student_password": "Test"
+            }
+        },
+        {
+            "comment": "Update one student",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/student/update",
+            "method": "POST",
+            "example": {
+                "id": 100,
+                "studentInfo": {
+                    "student_ID": 12345,
+                    "student_position": 1,
+                    "student_first_name": "Test",
+                    "student_last_name": "Edit",
+                    "student_nickname": "Update",
+                    "student_first_name_thai": "UwU",
+                    "student_last_name_thai": "UwU",
+                    "student_nickname_thai": "UwU",
+                    "student_gender": 1,
+                    "student_major": 1,
+                    "student_level": 1,
+                    "student_class": 1,
+                    "student_phone": "0999999999",
+                    "student_line_ID": "UwU",
+                    "student_image": "UwU",
+                    "student_email": "UwU",
+                    "student_password": "UwU"
+                }
+            }
+        },
+        {
+            "comment": "Delete one student",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/student/remove",
+            "method": "POST",
+            "example": {
+                "id": 100
+            }
+        }
+    ],
+    "teacher": [
+        {
+            "comment": "Get all teacher",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/teacher/getAll",
+            "method": "GET",
+            "example": {
+                "status": true,
+                "result": [
+                    {
+                        "primary_teacher_ID": 2,
+                        "teacher_ID": 12345,
+                        "teacher_position": 1,
+                        "teacher_first_name": "Test",
+                        "teacher_last_name": "Test",
+                        "teacher_nickname": "Test",
+                        "teacher_first_name_thai": "Test",
+                        "teacher_last_name_thai": "Test",
+                        "teacher_nickname_thai": "Test",
+                        "teacher_gender": 2,
+                        "teacher_major": 6,
+                        "teacher_phone": "0000000000",
+                        "teacher_line_ID": "Test",
+                        "teacher_image": "Test",
+                        "teacher_email": "Test",
+                        "teacher_password": "Test"
+                    }
+                ]
+            }
+        },
+        {
+            "comment": "Create one teacher",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/teacher/create",
+            "method": "POST",
+            "example": {
+                "teacher_ID": 12345,
+                "teacher_position": 1,
+                "teacher_first_name": "Test",
+                "teacher_last_name": "Test",
+                "teacher_nickname": "Test",
+                "teacher_first_name_thai": "Test",
+                "teacher_last_name_thai": "Test",
+                "teacher_nickname_thai": "Test",
+                "teacher_gender": 2,
+                "teacher_major": 6,
+                "teacher_phone": "0000000000",
+                "teacher_line_ID": "Test",
+                "teacher_image": "Test",
+                "teacher_email": "Test",
+                "teacher_password": "Test"
+            }
+        },
+        {
+            "comment": "Update one teacher",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/teacher/update",
+            "method": "POST",
+            "example": {
+                "id": 2,
+                "teacherInfo": {
+                    "teacher_ID": 12345,
+                    "teacher_position": 1,
+                    "teacher_first_name": "Edit",
+                    "teacher_last_name": "Test",
+                    "teacher_nickname": "Test",
+                    "teacher_first_name_thai": "Test",
+                    "teacher_last_name_thai": "Test",
+                    "teacher_nickname_thai": "Test",
+                    "teacher_gender": 2,
+                    "teacher_major": 6,
+                    "teacher_phone": "0000000000",
+                    "teacher_line_ID": "Test",
+                    "teacher_image": "Test",
+                    "teacher_email": "Test",
+                    "teacher_password": "Test"
+                }
+            }
+        },
+        {
+            "comment": "Delete one teacher",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/teacher/remove",
+            "method": "POST",
+            "example": {
+                "id": 2
+            }
+        }
+    ]
+}
