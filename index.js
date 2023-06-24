@@ -5,7 +5,7 @@ require("dotenv").config();
 app.use(express.json());
 app.use(
     cors({
-        origin: "http://blauenthepeople.com"
+        origin: "http://3.26.52.10:3000"
     }));
 app.use(require('./routes'));
 
