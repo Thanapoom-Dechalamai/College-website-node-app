@@ -5,7 +5,7 @@ require("dotenv").config();
 app.use(express.json());
 app.use(
     cors({
-        origin: "http://blauenthepeople.com"
+        origin: "http://sbacprofile.blauenthepeople.com"
     }));
 app.use(require('./routes'));
 
