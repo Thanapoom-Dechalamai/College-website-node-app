@@ -212,5 +212,27 @@
                 ]
             }
         }
+    ],
+    "classroom": [
+        {
+            "comment": "Get all classroom",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/classroom",
+            "method": "GET",
+            "example": {
+                "status": true,
+                "result": [
+                    {
+                        "classroom_ID": 1,
+                        "classroom_level": 3,
+                        "classroom_class": 3
+                    },
+                    {
+                        "classroom_ID": 2,
+                        "classroom_level": 1,
+                        "classroom_class": 1
+                    }
+                ]
+            }
+        }
     ]
 }
