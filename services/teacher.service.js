@@ -13,7 +13,7 @@ const methods = {
                     password: process.env.DB_PASSWORD,
                     database: process.env.DB_DATABASE
                 });
-                let con = mysql.createConnection({
+                const con = mysql.createConnection({
                     host: process.env.DB_HOST,
                     user: process.env.DB_USERNAME,
                     password: process.env.DB_PASSWORD,
@@ -22,7 +22,11 @@ const methods = {
                 con.connect((err) =>
                 {
                     if (err) reject(err);
-                    con.query(`SELECT * FROM ${process.env.DB_TABLE_TEACHER}`, (error, result, field) =>
+                    const column = ['teacher_ID', 'teacher_first_name',
+                        'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
+                        'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
+                        'teacher_email'];
+                    con.query(`SELECT ${column.join(', ')} FROM ${process.env.DB_TABLE_TEACHER}`, (error, result, field) =>
                     {
                         if (error) reject(error);
                         resolve(result);
@@ -42,7 +46,7 @@ const methods = {
         {
             try
             {
-                var con = mysql.createConnection({
+                const con = mysql.createConnection({
                     host: process.env.DB_HOST,
                     user: process.env.DB_USERNAME,
                     password: process.env.DB_PASSWORD,
@@ -58,9 +62,9 @@ const methods = {
                         'teacher_email', 'teacher_password'],
                         values = [],
                         row = [];
-                    for (let index = 0; index < columns.length; index++)
+                    for (const element of columns)
                     {
-                        row.push(object[columns[index]]);
+                        row.push(object[element]);
                     }
                     values = [
                         row
@@ -85,7 +89,7 @@ const methods = {
         {
             try
             {
-                var con = mysql.createConnection({
+                const con = mysql.createConnection({
                     host: process.env.DB_HOST,
                     user: process.env.DB_USERNAME,
                     password: process.env.DB_PASSWORD,
@@ -142,7 +146,7 @@ const methods = {
         {
             try
             {
-                var con = mysql.createConnection({
+                const con = mysql.createConnection({
                     host: process.env.DB_HOST,
                     user: process.env.DB_USERNAME,
                     password: process.env.DB_PASSWORD,

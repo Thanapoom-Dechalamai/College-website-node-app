@@ -19,10 +19,14 @@ const methods = {
                     password: process.env.DB_PASSWORD,
                     database: process.env.DB_DATABASE
                 });
+                let columns = ['student_ID', 'student_first_name',
+                    'student_last_name', 'student_nickname', 'student_first_name_thai', 'student_last_name_thai', 'student_nickname_thai',
+                    'student_major', 'student_level', 'student_class', 'student_phone', 'student_line_ID', 'student_image',
+                    'student_email'];
                 con.connect((err) =>
                 {
                     if (err) reject(err);
-                    con.query(`SELECT * FROM ${process.env.DB_TABLE_STUDENT}`, (error, result, field) =>
+                    con.query(`SELECT ${columns.join(', ')} FROM ${process.env.DB_TABLE_STUDENT}`, (error, result, field) =>
                     {
                         if (error) reject(error);
                         resolve(result);
@@ -42,7 +46,7 @@ const methods = {
         {
             try
             {
-                var con = mysql.createConnection({
+                const con = mysql.createConnection({
                     host: process.env.DB_HOST,
                     user: process.env.DB_USERNAME,
                     password: process.env.DB_PASSWORD,
@@ -58,9 +62,9 @@ const methods = {
                         'student_email', 'student_password'],
                         values = [],
                         row = [];
-                    for (let index = 0; index < columns.length; index++)
+                    for (const element of columns)
                     {
-                        row.push(object[columns[index]]);
+                        row.push(object[element]);
                     }
                     values = [
                         row
@@ -70,17 +74,6 @@ const methods = {
                         if (error) reject(error);
                         resolve(result);
                     });
-                    // con.query(`INSERT INTO student_table (student_position, student_first_name, 
-                    //     student_last_name, student_nickname, student_first_name_thai, student_last_name_thai, student_nickname_thai, 
-                    //     student_gender, student_major, student_level, student_class, student_phone, student_line_ID, student_image,
-                    //     student_email, student_password) VALUES (${row.studentId}, '${row.position}', '${row.firstName}',
-                    //      '${row.lastName}', '${row.nickname}', '${row.firstNameThai}', '${row.lastNameThai}',
-                    //       '${row.nicknameThai}', '${row.gender}', '${row.major}', '${row.level}', '${row.class}', '${row.phoneNumber}',
-                    //        '${row.lineID}', '${row.image}', '${row.email}', '${row.password}');`, (error, result, fields) =>
-                    // {
-                    //     if (error) reject(error);
-                    //     resolve(result);
-                    // });
 
                 });
             } catch (error)
@@ -96,7 +89,7 @@ const methods = {
         {
             try
             {
-                var con = mysql.createConnection({
+                const con = mysql.createConnection({
                     host: process.env.DB_HOST,
                     user: process.env.DB_USERNAME,
                     password: process.env.DB_PASSWORD,
@@ -153,7 +146,7 @@ const methods = {
         {
             try
             {
-                var con = mysql.createConnection({
+                const con = mysql.createConnection({
                     host: process.env.DB_HOST,
                     user: process.env.DB_USERNAME,
                     password: process.env.DB_PASSWORD,
