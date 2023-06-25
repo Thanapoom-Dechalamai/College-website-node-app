@@ -10,22 +10,19 @@
                     {
                         "primary_student_ID": 1,
                         "student_ID": 17903,
-                        "student_position": 1,
                         "student_first_name": "Nawee",
                         "student_last_name": "Moongmart",
                         "student_nickname": "Nawee",
                         "student_first_name_thai": "นาวี",
                         "student_last_name_thai": "มุ่งมาตร์",
                         "student_nickname_thai": "นาวี",
-                        "student_gender": 2,
                         "student_major": 6,
                         "student_level": 3,
                         "student_class": 3,
                         "student_phone": "0610421298",
                         "student_line_ID": "orurio345",
                         "student_image": "",
-                        "student_email": "nawee.moo@sbacnon.ac.th",
-                        "student_password": "UwU"
+                        "student_email": "nawee.moo@sbacnon.ac.th"
                     }
                 ]
             }
@@ -101,20 +98,17 @@
                     {
                         "primary_teacher_ID": 2,
                         "teacher_ID": 12345,
-                        "teacher_position": 1,
                         "teacher_first_name": "Test",
                         "teacher_last_name": "Test",
                         "teacher_nickname": "Test",
                         "teacher_first_name_thai": "Test",
                         "teacher_last_name_thai": "Test",
                         "teacher_nickname_thai": "Test",
-                        "teacher_gender": 2,
                         "teacher_major": 6,
                         "teacher_phone": "0000000000",
                         "teacher_line_ID": "Test",
                         "teacher_image": "Test",
-                        "teacher_email": "Test",
-                        "teacher_password": "Test"
+                        "teacher_email": "Test"
                     }
                 ]
             }
