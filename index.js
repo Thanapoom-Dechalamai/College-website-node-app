@@ -6,7 +6,8 @@ app.use(express.json());
 app.use(
     cors({
         origin: "*"
-    }));
+    })
+);
 app.use(require('./routes'));
 
 const server = app.listen(process.env.SERVER_PORT, () =>
