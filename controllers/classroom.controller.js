@@ -25,8 +25,8 @@ const method = {
     {
         try
         {
-            if (!req.body || !req.body.id) res.status(401).send("Bad request");
-            let list = await classroomService.getClassByLevel(req.body.id);
+            if (!req.body || !req.body.level) res.status(401).send("Bad request");
+            let list = await classroomService.getClassByLevel(req.body.level);
             console.log(list);
             res.send({
                 status: true,
