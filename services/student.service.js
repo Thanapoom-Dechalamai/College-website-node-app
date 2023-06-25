@@ -19,7 +19,7 @@ const methods = {
                     password: process.env.DB_PASSWORD,
                     database: process.env.DB_DATABASE
                 });
-                let columns = ['student_ID', 'student_first_name',
+                let columns = ['primary_student_ID', 'student_ID', 'student_first_name',
                     'student_last_name', 'student_nickname', 'student_first_name_thai', 'student_last_name_thai', 'student_nickname_thai',
                     'student_major', 'student_level', 'student_class', 'student_phone', 'student_line_ID', 'student_image',
                     'student_email'];
