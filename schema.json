@@ -233,6 +233,14 @@
                     }
                 ]
             }
+        },
+        {
+            "comment": "Get classroom by level",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/classroom/getClassroom",
+            "method": "POST",
+            "example": {
+                "id": 1
+            }
         }
     ]
 }

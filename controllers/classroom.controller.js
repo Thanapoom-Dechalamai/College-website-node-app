@@ -20,6 +20,27 @@ const method = {
                 result: error
             });
         }
+    },
+    async onGetClassroom(req, res)
+    {
+        try
+        {
+            if (!req.body || !req.body.id) res.status(401).send("Bad request");
+            let list = await classroomService.getClassByLevel(req.body.id);
+            console.log(list);
+            res.send({
+                status: true,
+                result: list.map((element) => element.classroom_class)
+            });
+
+        } catch (error)
+        {
+            console.log(error);
+            res.send({
+                status: false,
+                result: error
+            });
+        }
     }
 };
 
