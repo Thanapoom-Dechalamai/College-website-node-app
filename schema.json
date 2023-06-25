@@ -174,5 +174,49 @@
                 "id": 2
             }
         }
+    ],
+    "major": [
+        {
+            "comment": "Get all major",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/major/getAll",
+            "method": "GET",
+            "example": {
+                "status": true,
+                "result": [
+                    {
+                        "major_ID": 1,
+                        "major_name": "Accounting"
+                    },
+                    {
+                        "major_ID": 2,
+                        "major_name": "Business Computer"
+                    },
+                    {
+                        "major_ID": 3,
+                        "major_name": "Computer Graphic"
+                    },
+                    {
+                        "major_ID": 4,
+                        "major_name": "Foreign Language"
+                    },
+                    {
+                        "major_ID": 5,
+                        "major_name": "Hotel Management"
+                    },
+                    {
+                        "major_ID": 6,
+                        "major_name": "Information Technology"
+                    },
+                    {
+                        "major_ID": 7,
+                        "major_name": "Marketing"
+                    },
+                    {
+                        "major_ID": 8,
+                        "major_name": "Tourism"
+                    }
+                ]
+            }
+        }
     ]
 }
