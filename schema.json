@@ -242,5 +242,37 @@
                 "level": 1
             }
         }
+    ],
+    "homeroom": [
+        {
+            "comment": "Get all homeroom",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/homeroom/getAll",
+            "method": "GET",
+            "example": {
+                "status": true,
+                "result": [
+                    {
+                        "homeroom_ID": 5,
+                        "homeroom_classroom": 1,
+                        "homeroom_teacher_ID": 0
+                    },
+                    {
+                        "homeroom_ID": 6,
+                        "homeroom_classroom": 2,
+                        "homeroom_teacher_ID": 0
+                    },
+                    {
+                        "homeroom_ID": 7,
+                        "homeroom_classroom": 3,
+                        "homeroom_teacher_ID": 0
+                    },
+                    {
+                        "homeroom_ID": 9,
+                        "homeroom_classroom": 4,
+                        "homeroom_teacher_ID": 0
+                    }
+                ]
+            }
+        }
     ]
 }
