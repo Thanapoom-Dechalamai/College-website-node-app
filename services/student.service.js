@@ -40,7 +40,7 @@ const methods = {
             }
         });
     },
-    getByAmount(amount)
+    getByAmount(major, amount)
     {
         return new Promise(async (resolve, reject) =>
         {
@@ -65,7 +65,7 @@ const methods = {
                 con.connect((err) =>
                 {
                     if (err) reject(err);
-                    con.query(`SELECT ${columns.join(', ')} FROM ${process.env.DB_TABLE_STUDENT} ORDER BY student_ID LIMIT ${amount}`, (error, result, field) =>
+                    con.query(`SELECT ${columns.join(', ')} FROM ${process.env.DB_TABLE_STUDENT} WHERE student_major = ${major} ORDER BY student_ID LIMIT ${amount}`, (error, result, field) =>
                     {
                         if (error) reject(error);
                         resolve(result);

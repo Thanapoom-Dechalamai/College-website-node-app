@@ -28,6 +28,149 @@
             }
         },
         {
+            "comment": "Get student by amount",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/student/getByAmount?amount=4",
+            "method": "GET",
+            "example": {
+                "status": true,
+                "result": {
+                    "status": true,
+                    "result": {
+                        "majorAC": [],
+                        "majorBC": [],
+                        "majorCG": [
+                            {
+                                "primary_student_ID": 31,
+                                "student_ID": 17786,
+                                "student_first_name": "Wichuda",
+                                "student_last_name": "Koonjeng",
+                                "student_nickname": "",
+                                "student_first_name_thai": "วิชุดา",
+                                "student_last_name_thai": "ขุนเจ๋ง",
+                                "student_nickname_thai": "",
+                                "student_major": 3,
+                                "student_level": 3,
+                                "student_class": "6",
+                                "student_phone": "0823509777",
+                                "student_line_ID": "0823509777",
+                                "student_image": "/assets/profilePic/students/17786_wichuda.jpg",
+                                "student_email": "wichuda.koo@sbacnon.ac.th"
+                            },
+                            {
+                                "primary_student_ID": 29,
+                                "student_ID": 17963,
+                                "student_first_name": "Puithipong",
+                                "student_last_name": "Suwanasut",
+                                "student_nickname": "",
+                                "student_first_name_thai": "พฤฒิพงศ์",
+                                "student_last_name_thai": "สุวรรณสุทธิ์",
+                                "student_nickname_thai": "",
+                                "student_major": 3,
+                                "student_level": 3,
+                                "student_class": "7",
+                                "student_phone": "",
+                                "student_line_ID": "",
+                                "student_image": "/assets/profilePic/students/17963_puithipong.png",
+                                "student_email": "puithipong.suw@sbacnon.ac.th"
+                            }
+                        ],
+                        "majorFL": [],
+                        "majorHT": [],
+                        "majorIT": [
+                            {
+                                "primary_student_ID": 19,
+                                "student_ID": 17575,
+                                "student_first_name": "Nattapong",
+                                "student_last_name": "Jullaruji",
+                                "student_nickname": "Hack",
+                                "student_first_name_thai": "ณัฐพงศ์",
+                                "student_last_name_thai": "จุลละรุจิ",
+                                "student_nickname_thai": "แฮ็ค",
+                                "student_major": 6,
+                                "student_level": 3,
+                                "student_class": "3",
+                                "student_phone": "0617951419",
+                                "student_line_ID": "athaz16",
+                                "student_image": "/assets/profilePic/students/17575_nattapong.png",
+                                "student_email": "nattapong.jul@sbacnon.ac.th"
+                            },
+                            {
+                                "primary_student_ID": 20,
+                                "student_ID": 17576,
+                                "student_first_name": "Nattapoom",
+                                "student_last_name": "Jullaruji",
+                                "student_nickname": "Hall",
+                                "student_first_name_thai": "ณัฐภูมิ",
+                                "student_last_name_thai": "จุลละรุจิ",
+                                "student_nickname_thai": "ฮอล",
+                                "student_major": 6,
+                                "student_level": 3,
+                                "student_class": "3",
+                                "student_phone": "0826286252",
+                                "student_line_ID": "hall2549",
+                                "student_image": "/assets/profilePic/students/17576_nattapoom.png",
+                                "student_email": "nattapoom.jul@sbacnon.ac.th"
+                            },
+                            {
+                                "primary_student_ID": 8,
+                                "student_ID": 17743,
+                                "student_first_name": "Patcharawarin",
+                                "student_last_name": "Sutthiparpa",
+                                "student_nickname": "Wan",
+                                "student_first_name_thai": "พัชรวรินทร์",
+                                "student_last_name_thai": "สุทธิประภา",
+                                "student_nickname_thai": "หวาน",
+                                "student_major": 6,
+                                "student_level": 3,
+                                "student_class": "3",
+                                "student_phone": "0641687393",
+                                "student_line_ID": "Patcharawarin2548",
+                                "student_image": "/assets/profilePic/students/17743_patcharawarin.png",
+                                "student_email": "patcharawarin.sut@sbacnon.ac.th"
+                            },
+                            {
+                                "primary_student_ID": 15,
+                                "student_ID": 17762,
+                                "student_first_name": "Phoorich",
+                                "student_last_name": "Sunthonpalin",
+                                "student_nickname": "Phoo",
+                                "student_first_name_thai": "ภูริช",
+                                "student_last_name_thai": "สุนทรพะลิน",
+                                "student_nickname_thai": "ภู",
+                                "student_major": 6,
+                                "student_level": 3,
+                                "student_class": "3",
+                                "student_phone": "0824079416",
+                                "student_line_ID": "gudjscusjeh",
+                                "student_image": "/assets/profilePic/students/17762_phoorich.png",
+                                "student_email": "phoorich.sun@sbacnon.ac.th"
+                            }
+                        ],
+                        "majorMK": [
+                            {
+                                "primary_student_ID": 27,
+                                "student_ID": 18475,
+                                "student_first_name": "Kanyarat",
+                                "student_last_name": "Promjaree",
+                                "student_nickname": "Praewa",
+                                "student_first_name_thai": "กันยารัตน์",
+                                "student_last_name_thai": "พรหมจารี",
+                                "student_nickname_thai": "แพรวา",
+                                "student_major": 7,
+                                "student_level": 2,
+                                "student_class": "6",
+                                "student_phone": "0655969844",
+                                "student_line_ID": "",
+                                "student_image": "/assets/profilePic/students/18475_kanyarat.jpg",
+                                "student_email": "kanyarat.prom@sbacnon.ac.th"
+                            }
+                        ],
+                        "majorTS": []
+                    }
+                }
+            }
+        },
+        {
             "comment": "Create one student",
             "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/student/create",
             "method": "POST",

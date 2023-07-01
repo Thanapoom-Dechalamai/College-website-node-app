@@ -1,8 +1,10 @@
 const studentServices = require('../services/student.service');
 
 const methods = {
-    async onGetAll(req, res) {
-        try {
+    async onGetAll(req, res)
+    {
+        try
+        {
             let list = await studentServices.getAll();
             console.log(list);
             res.send({
@@ -10,7 +12,8 @@ const methods = {
                 result: list
             });
 
-        } catch (error) {
+        } catch (error)
+        {
             console.log(error);
             res.send({
                 status: false,
@@ -18,17 +21,36 @@ const methods = {
             });
         }
     },
-    async onGetByAmount(req, res) {
-        try {
-            if(!req.query.amount) res.status(401).send("Bad request")
-            let list = await studentServices.getByAmount(req.query.amount);
-            console.log(list);
+    async onGetByAmount(req, res)
+    {
+        try
+        {
+            if (!req.query.amount) res.status(401).send("Bad request");
+            let majorAC = await studentServices.getByAmount(1, req.query.amount);
+            let majorBC = await studentServices.getByAmount(2, req.query.amount);
+            let majorCG = await studentServices.getByAmount(3, req.query.amount);
+            let majorFL = await studentServices.getByAmount(4, req.query.amount);
+            let majorHT = await studentServices.getByAmount(5, req.query.amount);
+            let majorIT = await studentServices.getByAmount(6, req.query.amount);
+            let majorMK = await studentServices.getByAmount(7, req.query.amount);
+            let majorTS = await studentServices.getByAmount(8, req.query.amount);
+            let data = {
+                majorAC,
+                majorBC,
+                majorCG,
+                majorFL,
+                majorHT,
+                majorIT,
+                majorMK,
+                majorTS
+            };
             res.send({
                 status: true,
-                result: list
+                result: data
             });
 
-        } catch (error) {
+        } catch (error)
+        {
             console.log(error);
             res.send({
                 status: false,
@@ -37,8 +59,10 @@ const methods = {
         }
     }
     ,
-    async onCreateOne(req, res) {
-        try {
+    async onCreateOne(req, res)
+    {
+        try
+        {
             if (!req.body) res.status(401).send("Bad request");
             console.log(req.body);
             let result = await studentServices.addOne(req.body);
@@ -46,7 +70,8 @@ const methods = {
                 status: true,
                 result: result
             });
-        } catch (error) {
+        } catch (error)
+        {
             console.log(error);
             res.send({
                 status: false,
@@ -54,8 +79,10 @@ const methods = {
             });
         }
     },
-    async onUpdateAt(req, res) {
-        try {
+    async onUpdateAt(req, res)
+    {
+        try
+        {
             if (!req.body || !req.body.id || !req.body.studentInfo) res.status(401).send("Bad request");
             console.log(`${req.body.id} + ${req.body.studentInfo}`);
             let result = await studentServices.updateAt(req.body.id, req.body.studentInfo);
@@ -64,7 +91,8 @@ const methods = {
                 status: true,
                 result: result
             });
-        } catch (error) {
+        } catch (error)
+        {
             console.log(error);
             res.send({
                 status: false,
@@ -72,8 +100,10 @@ const methods = {
             });
         }
     },
-    async onRemove(req, res) {
-        try {
+    async onRemove(req, res)
+    {
+        try
+        {
             if (!req.body || !req.body.id) res.status(401).send("Bad request");
             let result = await studentServices.removeAt(req.body.id);
             console.log(result);
@@ -81,7 +111,8 @@ const methods = {
                 status: true,
                 result: result
             });
-        } catch (error) {
+        } catch (error)
+        {
             console.log(error);
             res.send({
                 status: false,
