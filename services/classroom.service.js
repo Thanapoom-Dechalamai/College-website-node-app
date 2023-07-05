@@ -57,7 +57,7 @@ const methods = {
                 con.connect((err) =>
                 {
                     if (err) reject(err);
-                    con.query(`SELECT (classroom_class, classroom_major) FROM ${process.env.DB_TABLE_CLASSROOM} WHERE classroom_level = ${level}`, (error, result, field) =>
+                    con.query(`SELECT classroom_class, classroom_major FROM ${process.env.DB_TABLE_CLASSROOM} WHERE classroom_level = ${level}`, (error, result, field) =>
                     {
                         if (error) reject(error);
                         resolve(result);
