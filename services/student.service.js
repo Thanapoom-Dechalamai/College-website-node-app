@@ -136,7 +136,7 @@ const methods = {
                 });
                 con.connect(function (err)
                 {
-                    if (err) reject(error);
+                    if (err) reject(err);
 
                     let allowedcolumns = ['student_ID', 'student_position', 'student_first_name',
                         'student_last_name', 'student_nickname', 'student_first_name_thai', 'student_last_name_thai', 'student_nickname_thai',
@@ -193,7 +193,7 @@ const methods = {
                 });
                 con.connect(function (err)
                 {
-                    if (err) reject(error);
+                    if (err) reject(err);
                     con.query(`DELETE FROM ${process.env.DB_TABLE_STUDENT} WHERE primary_student_ID = '${id}'`, (error, result, fields) =>
                     {
                         if (error) reject(error);

@@ -379,10 +379,29 @@
         },
         {
             "comment": "Get classroom by level",
-            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/classroom/getClassroom",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/classroom/getClassroomByLevel",
             "method": "POST",
             "example": {
                 "level": 1
+            }
+        },
+        {
+            "comment": "Update one classroom",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/classroom/update",
+            "method": "POST",
+            "example": {
+                "id": 2,
+                "classroomInfo": {
+                    "classroom_homeroom_teacher": 0
+                }
+            }
+        },
+        {
+            "comment": "Delete one student",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/classroom/remove",
+            "method": "POST",
+            "example": {
+                "id": 1
             }
         }
     ],
