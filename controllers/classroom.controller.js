@@ -30,7 +30,7 @@ const method = {
             console.log(list);
             res.send({
                 status: true,
-                result: list.map((element) => element.classroom_class)
+                result: list
             });
 
         } catch (error)
