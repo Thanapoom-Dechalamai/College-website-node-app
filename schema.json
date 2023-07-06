@@ -397,7 +397,7 @@
             }
         },
         {
-            "comment": "Delete one student",
+            "comment": "Delete one classroom",
             "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/classroom/remove",
             "method": "POST",
             "example": {
