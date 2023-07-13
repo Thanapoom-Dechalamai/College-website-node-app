@@ -54,7 +54,7 @@ const methods = {
                 });
                 con.connect(function (err)
                 {
-                    if (err) reject(error);
+                    if (err) reject(err);
 
                     let columns = ['teacher_ID', 'teacher_position', 'teacher_first_name',
                         'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
@@ -154,7 +154,7 @@ const methods = {
                 });
                 con.connect(function (err)
                 {
-                    if (err) reject(error);
+                    if (err) reject(err);
                     con.query(`DELETE FROM ${process.env.DB_TABLE_TEACHER} WHERE primary_teacher_ID = '${id}'`, (error, result, fields) =>
                     {
                         if (error) reject(error);

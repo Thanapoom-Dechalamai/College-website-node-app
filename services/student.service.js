@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const methods = {
     getAll()
@@ -93,27 +94,41 @@ const methods = {
                 });
                 con.connect(function (err)
                 {
-                    if (err) reject(error);
-
-                    let columns = ['student_ID', 'student_position', 'student_first_name',
-                        'student_last_name', 'student_nickname', 'student_first_name_thai', 'student_last_name_thai', 'student_nickname_thai',
-                        'student_gender', 'student_major', 'student_level', 'student_class', 'student_phone', 'student_line_ID', 'student_image',
-                        'student_email', 'student_password'],
-                        values = [],
-                        row = [];
-                    for (const element of columns)
-                    {
-                        row.push(object[element]);
-                    }
-                    values = [
-                        row
-                    ];
-                    con.query(`INSERT INTO ${process.env.DB_TABLE_STUDENT} (${columns.join(", ")}) VALUES ?`, [values], (error, result, fields) =>
+                    if (err) reject(err);
+                    console.log(object['student_email']);
+                    con.query(`SELECT student_email FROM ${process.env.DB_TABLE_STUDENT} WHERE student_email = '${object['student_email']}'`, async (error, result, fields) =>
                     {
                         if (error) reject(error);
-                        resolve(result);
-                    });
+                        console.log(result);
+                        if (result?.length > 0)
+                        {
+                            reject('That email is already in use');
+                        } else
+                        {
+                            let columns = ['student_ID', 'student_position', 'student_first_name',
+                                'student_last_name', 'student_nickname', 'student_first_name_thai', 'student_last_name_thai', 'student_nickname_thai',
+                                'student_gender', 'student_major', 'student_level', 'student_class', 'student_phone', 'student_line_ID', 'student_image',
+                                'student_email', 'student_password'],
+                                values = [],
+                                row = [];
+                            object['student_password'] = await bcrypt.hash(object['student_password'], 8);
+                            console.log(object['student_password']);
+                            for (const element of columns)
+                            {
+                                row.push(object[element]);
+                            }
+                            values = [
+                                row
+                            ];
+                            con.query(`INSERT INTO ${process.env.DB_TABLE_STUDENT} (${columns.join(", ")}) VALUES ?`, [values], (error, result, fields) =>
+                            {
+                                if (error) reject(error);
+                                resolve(result);
+                            });
+                        }
 
+
+                    });
                 });
             } catch (error)
             {
