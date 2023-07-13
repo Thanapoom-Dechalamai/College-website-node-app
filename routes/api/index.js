@@ -7,5 +7,6 @@ router.use('/major', require('./major'));
 router.use('/classroom', require('./classroom'));
 router.use('/auth', require('./auth'));
 router.use('/image', require('./image'));
+router.use('/profile', require('./profile'));
 
 module.exports = router;

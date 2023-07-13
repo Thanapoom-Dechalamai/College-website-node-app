@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const controller = require('../../controllers/image.controller');
 
-router.get('/getStudentImage', controller.onGetStudentImage);
+router.get('/getImage', controller.onGetImage);
 
 module.exports = router;

@@ -450,8 +450,18 @@
     ],
     "image": [
         {
-            "comment": "Login",
-            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/image/getStudentImage",
+            "comment": "Get image",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/image/getImage",
+            "method": "GET",
+            "headers": {
+                "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5X3N0dWRlbnRfaWQiOjMyLCJpYXQiOjE2ODkyNzIwNTcsImV4cCI6MTY4OTM1ODQ1N30.31BU2YHbiF7HINgltQeSfErUGMRYiqwsr5ChC-7xEz4"
+            }
+        }
+    ],
+    "profile": [
+        {
+            "comment": "Get profile",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/profile/getProfile",
             "method": "GET",
             "headers": {
                 "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5X3N0dWRlbnRfaWQiOjMyLCJpYXQiOjE2ODkyNzIwNTcsImV4cCI6MTY4OTM1ODQ1N30.31BU2YHbiF7HINgltQeSfErUGMRYiqwsr5ChC-7xEz4"
