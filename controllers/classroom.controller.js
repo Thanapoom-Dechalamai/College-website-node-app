@@ -21,12 +21,37 @@ const method = {
             });
         }
     },
-    async onGetClassroom(req, res)
+    async onGetClassroomByLevel(req, res)
     {
         try
         {
             if (!req.body || !req.body.level) res.status(401).send("Bad request");
             let list = await classroomService.getClassByLevel(req.body.level);
+            console.log(list);
+            res.send({
+                status: true,
+                result: list
+            });
+
+        } catch (error)
+        {
+            console.log(error);
+            res.send({
+                status: false,
+                result: error
+            });
+        }
+    },
+    async onGetClassroomByTeacher(req, res)
+    {
+        try
+        {
+            if (!req.body || !req.body.teacher_ID)
+            {
+                res.status(401).send("Bad request");
+                return;
+            }
+            let list = await classroomService.getClassByTeacher(req.body.teacher_ID);
             console.log(list);
             res.send({
                 status: true,
