@@ -111,7 +111,7 @@ const methods = {
                                 'student_email', 'student_password'],
                                 values = [],
                                 row = [];
-                            object['student_password'] = await bcrypt.hash(object['student_password'], 8);
+                            object['student_password'] = await bcrypt.hash(object['student_password'], 12);
                             console.log(object['student_password']);
                             for (const element of columns)
                             {
