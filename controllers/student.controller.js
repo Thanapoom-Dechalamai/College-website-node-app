@@ -57,8 +57,27 @@ const methods = {
                 result: error
             });
         }
-    }
-    ,
+    }, async onGetByClass(req, res)
+    {
+        try
+        {
+            if (!req.query.level || !req.query.class) res.status(401).send("Bad request");
+            let result = await studentServices.getByClass(req.query.level, req.query.class);
+            console.log(result);
+            res.send({
+                status: true,
+                result
+            });
+
+        } catch (error)
+        {
+            console.log(error);
+            res.send({
+                status: false,
+                result: error
+            });
+        }
+    },
     async onCreateOne(req, res)
     {
         try
