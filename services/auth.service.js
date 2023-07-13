@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+const config = require('../configs/app');
 require('dotenv').config();
 const methods = {
     login(email, password)
@@ -30,7 +31,7 @@ const methods = {
                             {
                                 reject('Invalid Password!');
                             }
-                            const token = jwt.sign({ primary_student_ID: result[0].primary_student_ID }, "sbacprofile",
+                            const token = jwt.sign({ primary_student_id: result[0].primary_student_id }, config.secret,
                                 {
                                     algorithm: 'HS256',
                                     allowInsecureKeySizes: true,
