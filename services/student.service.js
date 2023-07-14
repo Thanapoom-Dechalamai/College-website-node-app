@@ -185,11 +185,9 @@ const methods = {
                             let columns = ['student_ID', 'student_position', 'student_first_name',
                                 'student_last_name', 'student_nickname', 'student_first_name_thai', 'student_last_name_thai', 'student_nickname_thai',
                                 'student_gender', 'student_major', 'student_level', 'student_class', 'student_phone', 'student_line_ID', 'student_image',
-                                'student_email', 'student_password'],
+                                'student_email'],
                                 values = [],
                                 row = [];
-                            object['student_password'] = await bcrypt.hash(object['student_password'], 12);
-                            console.log(object['student_password']);
                             for (const element of columns)
                             {
                                 row.push(object[element]);
@@ -233,7 +231,7 @@ const methods = {
                     let allowedcolumns = ['student_ID', 'student_position', 'student_first_name',
                         'student_last_name', 'student_nickname', 'student_first_name_thai', 'student_last_name_thai', 'student_nickname_thai',
                         'student_gender', 'student_major', 'student_level', 'student_class', 'student_phone', 'student_line_ID', 'student_image',
-                        'student_email', 'student_password'], //all columns that can be updated
+                        'student_email'], //all columns that can be updated
                         columns = [],
                         values = [];
 
