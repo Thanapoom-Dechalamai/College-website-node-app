@@ -98,7 +98,7 @@ const methods = {
                     let columns = ['teacher_ID', 'teacher_position', 'teacher_first_name',
                         'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
                         'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
-                        'teacher_email', 'teacher_password'],
+                        'teacher_email'],
                         values = [],
                         row = [];
                     for (const element of columns)
@@ -141,7 +141,7 @@ const methods = {
                     let allowedcolumns = ['teacher_ID', 'teacher_position', 'teacher_first_name',
                         'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
                         'teacher_gender', 'teacher_major', 'teacher_phone', 'student_line_ID', 'teacher_image',
-                        'teacher_email', 'teacher_password'], //all columns that can be updated
+                        'teacher_email'], //all columns that can be updated
                         columns = [],
                         values = [];
 

@@ -301,8 +301,7 @@
                 "teacher_phone": "0000000000",
                 "teacher_line_ID": "Test",
                 "teacher_image": "Test",
-                "teacher_email": "Test",
-                "teacher_password": "Test"
+                "teacher_email": "Test"
             }
         },
         {
@@ -325,8 +324,7 @@
                     "teacher_phone": "0000000000",
                     "teacher_line_ID": "Test",
                     "teacher_image": "Test",
-                    "teacher_email": "Test",
-                    "teacher_password": "Test"
+                    "teacher_email": "Test"
                 }
             }
         },
