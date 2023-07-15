@@ -16,10 +16,25 @@ const methods = {
 
         const result = await imageService.getImage(authHeader.user_role, authHeader.user_role_id);
         console.log(result);
-        res.send({
-            status: true,
-            result: result[0]
-        });
+        if (authHeader.user_role == 1)
+        {
+            res.send({
+                status: true,
+                result: {
+                    profile_image: result[0]['student_image']
+                }
+            });
+
+        } else
+        {
+            res.send({
+                status: true,
+                result: {
+                    profile_image: result[0]['teacher_image']
+                }
+            });
+
+        }
     }
 };
 
