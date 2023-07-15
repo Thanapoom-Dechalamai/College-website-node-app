@@ -13,10 +13,11 @@ const methods = {
                 result: "The request headers doesn't contain authorization!",
             });
         }
+        let result;
         switch (authHeader.user_role)
         {
             case 1:
-                let result = await studentServices.getOne(authHeader.user_role_id);
+                result = await studentServices.getOne(authHeader.user_role_id);
                 console.log(result);
                 res.send({
                     status: true,
