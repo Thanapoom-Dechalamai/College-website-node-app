@@ -88,8 +88,7 @@ const methods = {
                     if (err) reject(err);
                     let columns = ['leave_notice_status', 'leave_notice_student',
                         'leave_notice_type', 'leave_notice_topic', 'leave_notice_description',
-                        'leave_notice_for_date', 'leave_notice_create_datetime',
-                        'leave_notice_change_teacher', 'leave_notice_change_datetime'],
+                        'leave_notice_for_date', 'leave_notice_create_datetime'],
                         values = [],
                         row = [];
                     for (const element of columns)
