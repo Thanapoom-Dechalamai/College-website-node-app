@@ -470,5 +470,98 @@
                 "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5X3N0dWRlbnRfaWQiOjMyLCJpYXQiOjE2ODkyNzIwNTcsImV4cCI6MTY4OTM1ODQ1N30.31BU2YHbiF7HINgltQeSfErUGMRYiqwsr5ChC-7xEz4"
             }
         }
+    ],
+    "forms": [
+        {
+            "leave notice": [
+                {
+                    "comment": "Get all leave notice forms",
+                    "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/forms/leaveNotice/getAll",
+                    "method": "GET",
+                    "example": {
+                        "status": true,
+                        "result": [
+                            {
+                                "leave_notice_ID": 1,
+                                "leave_notice_status": 1,
+                                "leave_notice_student": 12345,
+                                "leave_notice_type": 3,
+                                "leave_notice_topic": "(No topic)",
+                                "leave_notice_description": "(No description)",
+                                "leave_notice_for_date": "2023-07-15T17:00:00.000Z",
+                                "leave_notice_create_datetime": "2023-07-15T15:42:12.000Z",
+                                "leave_notice_change_teacher": 12345678,
+                                "leave_notice_change_datetime": "2023-07-14T17:00:00.000Z"
+                            },
+                            {
+                                "leave_notice_ID": 2,
+                                "leave_notice_status": 1,
+                                "leave_notice_student": 12345,
+                                "leave_notice_type": 3,
+                                "leave_notice_topic": "(No topic)",
+                                "leave_notice_description": "(No description)",
+                                "leave_notice_for_date": "2023-07-14T17:00:00.000Z",
+                                "leave_notice_create_datetime": "2023-07-15T08:42:12.000Z",
+                                "leave_notice_change_teacher": 12345678,
+                                "leave_notice_change_datetime": "2023-07-14T10:00:00.000Z"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "comment": "Get leave notice form by id",
+                    "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/forms/leaveNotice/getByID",
+                    "method": "POST",
+                    "example": {
+                        "id": 1
+                    }
+                },
+                {
+                    "comment": "Create leave notice form",
+                    "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/forms/leaveNotice/create",
+                    "method": "POST",
+                    "example": {
+                        "leave_notice_ID": 1,
+                        "leave_notice_status": 1,
+                        "leave_notice_student": 12345,
+                        "leave_notice_type": 3,
+                        "leave_notice_topic": "(No topic)",
+                        "leave_notice_description": "(No description)",
+                        "leave_notice_for_date": "2023-07-15T17:00:00.000Z",
+                        "leave_notice_create_datetime": "2023-07-15T15:42:12.000Z",
+                        "leave_notice_change_teacher": 12345678,
+                        "leave_notice_change_datetime": "2023-07-14T17:00:00.000Z"
+                    }
+                },
+                {
+                    "comment": "Update leave notice form",
+                    "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/forms/leaveNotice/update",
+                    "method": "POST",
+                    "example": {
+                        "id": 2,
+                        "leaveNoticeInfo": {
+                            "leave_notice_ID": 1,
+                            "leave_notice_status": 1,
+                            "leave_notice_student": 12345,
+                            "leave_notice_type": 3,
+                            "leave_notice_topic": "(No topic)",
+                            "leave_notice_description": "(No description)",
+                            "leave_notice_for_date": "2023-07-15T17:00:00.000Z",
+                            "leave_notice_create_datetime": "2023-07-15T15:42:12.000Z",
+                            "leave_notice_change_teacher": 12345678,
+                            "leave_notice_change_datetime": "2023-07-14T17:00:00.000Z"
+                        }
+                    }
+                },
+                {
+                    "comment": "Delete leave notice form",
+                    "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/forms/leaveNotice/remove",
+                    "method": "POST",
+                    "example": {
+                        "id": 1
+                    }
+                }
+            ]
+        }
     ]
 }
