@@ -47,7 +47,7 @@ const methods = {
                     status: true,
                     result: {
                         primary_profile_ID: result[0]['primary_teacher_ID'],
-                        profile_ID: result[0]['student_ID'],
+                        profile_ID: result[0]['teacher_ID'],
                         profile_first_name: result[0]['teacher_first_name'],
                         profile_last_name: result[0]['teacher_last_name'],
                         profile_nickname: result[0]['teacher_nickname'],
