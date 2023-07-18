@@ -86,9 +86,10 @@ const methods = {
                 con.connect(function (err)
                 {
                     if (err) reject(err);
-                    let columns = ['leave_notice_status', 'leave_notice_student',
-                        'leave_notice_type', 'leave_notice_topic', 'leave_notice_description',
-                        'leave_notice_for_date', 'leave_notice_create_datetime'],
+                    let columns = ['leave_notice_student_ID', 'leave_notice_description',
+                        'leave_notice_choice', 'leave_notice_for_date', 'leave_notice_duration',
+                        'leave_notice_create_datetime', 'leave_notice_attached_file',
+                        'leave_notice_teacher_ID'],
                         values = [],
                         row = [];
                     for (const element of columns)
@@ -127,8 +128,13 @@ const methods = {
                 {
                     if (err) reject(err);
 
-                    let allowedcolumns = ['leave_notice_status', 'leave_notice_student', 'leave_notice_type', 'leave_notice_topic', 'leave_notice_description',
-                        'leave_notice_description', 'leave_notice_create_datetime', 'leave_notice_change_teacher', 'leave_notice_change_datetime'], //all columns that can be updated
+                    let allowedcolumns = ['leave_notice_student_ID', 'leave_notice_description',
+                        'leave_notice_choice', 'leave_notice_for_date', 'leave_notice_duration',
+                        'leave_notice_create_datetime', 'leave_notice_attached_file',
+                        'leave_notice_teacher_ID', 'leave_notice_teacher_status',
+                        'leave_notice_teacher_description', 'leave_notice_teacher_change_datetime',
+                        'leave_notice_head_ID', 'leave_notice_head_status', 'leave_notice_head_description',
+                        'leave_notice_head_change_datetime'], //all columns that can be updated
                         columns = [],
                         values = [];
 
