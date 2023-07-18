@@ -530,7 +530,6 @@
                     "example": {
                         "id": 1,
                         "leaveNoticeInfo": {
-                            "leave_notice_ID": 1,
                             "leave_notice_student_ID": 12345,
                             "leave_notice_description": "",
                             "leave_notice_choice": 1,
