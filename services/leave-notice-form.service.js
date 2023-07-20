@@ -87,7 +87,7 @@ const methods = {
                 {
                     if (err) reject(err);
                     let columns = ['leave_notice_student_ID', 'leave_notice_description',
-                        'leave_notice_choice', 'leave_notice_for_date', 'leave_notice_duration',
+                        'leave_notice_choice', 'leave_notice_start_datetime', 'leave_notice_end_datetime',
                         'leave_notice_create_datetime', 'leave_notice_attached_file',
                         'leave_notice_teacher_ID'],
                         values = [],
@@ -129,7 +129,7 @@ const methods = {
                     if (err) reject(err);
 
                     let allowedcolumns = ['leave_notice_student_ID', 'leave_notice_description',
-                        'leave_notice_choice', 'leave_notice_for_date', 'leave_notice_duration',
+                        'leave_notice_choice', 'leave_notice_start_datetime', 'leave_notice_end_datetime',
                         'leave_notice_create_datetime', 'leave_notice_attached_file',
                         'leave_notice_teacher_ID', 'leave_notice_teacher_status',
                         'leave_notice_teacher_description', 'leave_notice_teacher_change_datetime',
