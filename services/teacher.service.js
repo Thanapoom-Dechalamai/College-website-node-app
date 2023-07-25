@@ -22,7 +22,7 @@ const methods = {
                 con.connect((err) =>
                 {
                     if (err) reject(err);
-                    const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_first_name',
+                    const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_position', 'teacher_first_name',
                         'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
                         'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
                         'teacher_email'];
@@ -61,7 +61,7 @@ const methods = {
                 con.connect((err) =>
                 {
                     if (err) reject(err);
-                    const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_first_name',
+                    const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_position', 'teacher_first_name',
                         'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
                         'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
                         'teacher_email'];
