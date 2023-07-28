@@ -9,5 +9,6 @@ router.use('/auth', require('./auth'));
 router.use('/image', require('./image'));
 router.use('/profile', require('./profile'));
 router.use('/forms', require('./forms'));
+router.use('/upload', require('./upload-files'));
 
 module.exports = router;

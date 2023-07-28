@@ -558,5 +558,23 @@
                 }
             ]
         }
+    ],
+    "upload": [
+        {
+            "comment": "Upload student image",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/upload/image/student",
+            "method": "POST",
+            "example": {
+                "profile": "files.jpg"
+            }
+        },
+        {
+            "comment": "Upload teacher image",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/upload/image/teacher",
+            "method": "POST",
+            "example": {
+                "profile": "files.jpg"
+            }
+        }
     ]
 }
