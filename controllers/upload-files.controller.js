@@ -5,10 +5,10 @@ const method = {
     {
         try
         {
-            const path = '/assets/profilePic/students/' + req.files['profile'].name;
+            if (!req.files['profile'] || !req.body.filename) return res.status(401).send("Bad request");
+            const path = '/assets/profilePic/students/' + req.body.filename;
             const data = req.files['profile'].data;
             let result = await uploadFilesService.upLoadImage(path, data);
-            console.log(result);
             res.send({
                 status: true,
                 result
@@ -27,7 +27,8 @@ const method = {
     {
         try
         {
-            const path = '/assets/profilePic/teachers/' + req.files['profile'].name;
+            if (!req.files['profile'] || !req.body.filename) return res.status(401).send("Bad request");
+            const path = '/assets/profilePic/teachers/' + req.body.filename;
             const data = req.files['profile'].data;
             let result = await uploadFilesService.upLoadImage(path, data);
             console.log(result);
