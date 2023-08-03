@@ -21,7 +21,7 @@ const methods = {
                     database: process.env.DB_DATABASE
                 });
                 let columns = ['primary_student_ID', 'student_ID', 'student_position', 'student_first_name',
-                    'student_last_name', 'student_nickname', 'student_first_name_thai', '', 'student_last_name_thai', 'student_nickname_thai',
+                    'student_last_name', 'student_nickname', 'student_first_name_thai', 'student_last_name_thai', 'student_nickname_thai',
                     'student_gender', 'student_major', 'student_level', 'student_class', 'student_phone', 'student_line_ID', 'student_image',
                     'student_email'];
                 con.connect((err) =>
