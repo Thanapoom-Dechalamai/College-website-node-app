@@ -3,5 +3,6 @@ const controller = require('../../controllers/upload-files.controller');
 
 router.post('/image/student', controller.onUploadStudentImage);
 router.post('/image/teacher', controller.onUploadTeacherImage);
+router.post('/image/leaveNotice', controller.onUploadLeaveNotice);
 
 module.exports = router;

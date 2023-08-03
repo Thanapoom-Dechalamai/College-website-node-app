@@ -16,6 +16,7 @@
                         "student_first_name_thai": "นาวี",
                         "student_last_name_thai": "มุ่งมาตร์",
                         "student_nickname_thai": "นาวี",
+                        "student_gender": 2,
                         "student_major": 6,
                         "student_level": 3,
                         "student_class": 3,
@@ -186,6 +187,7 @@
                         "student_first_name_thai": "นาวี",
                         "student_last_name_thai": "มุ่งมาตร์",
                         "student_nickname_thai": "นาวี",
+                        "student_gender": 2,
                         "student_major": 6,
                         "student_level": 3,
                         "student_class": 3,
@@ -274,6 +276,7 @@
                         "teacher_first_name_thai": "Test",
                         "teacher_last_name_thai": "Test",
                         "teacher_nickname_thai": "Test",
+                        "teacher_gender": 2,
                         "teacher_major": 6,
                         "teacher_phone": "0000000000",
                         "teacher_line_ID": "Test",
@@ -565,7 +568,8 @@
             "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/upload/image/student",
             "method": "POST",
             "example": {
-                "profile": "files.jpg"
+                "image": "files.jpg",
+                "filename": "student-image.jpg"
             }
         },
         {
@@ -573,7 +577,17 @@
             "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/upload/image/teacher",
             "method": "POST",
             "example": {
-                "profile": "files.jpg"
+                "image": "files.jpg",
+                "filename": "teacher-image.jpg"
+            }
+        },
+        {
+            "comment": "Upload leave notice image",
+            "url": "http://api.sbacprofile-collection.cloudns.ph/api/v1/upload/image/leaveNotice",
+            "method": "POST",
+            "example": {
+                "image": "files.jpg",
+                "filename": "leave-notice-image.jpg"
             }
         }
     ]
