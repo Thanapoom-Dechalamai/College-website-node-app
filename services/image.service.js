@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const db = require('./db.service');
 require('dotenv').config();
 const methods = {
     getImage(role, id)
@@ -7,48 +7,18 @@ const methods = {
         {
             try
             {
-                console.log({
-                    host: process.env.DB_HOST,
-                    user: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE
-                });
-                const con = mysql.createConnection({
-                    host: process.env.DB_HOST,
-                    user: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE
-                });
+                let result;
                 switch (role)
                 {
                     case 1:
-                        con.connect((err) =>
-                        {
-                            if (err) reject(err);
-                            con.query(`SELECT student_image FROM ${process.env.DB_TABLE_STUDENT} WHERE student_ID = ${id}`, (error, result, field) =>
-                            {
-                                if (error) reject(error);
-                                console.log(role + "" + id);
-                                resolve(result);
-                            });
-
-                        });
+                        result = await db.query(`SELECT student_image FROM ${process.env.DB_TABLE_STUDENT} WHERE student_ID = ?`, [id]);
+                        resolve(result);
                         break;
                     case 2:
-                        con.connect((err) =>
-                        {
-                            if (err) reject(err);
-                            con.query(`SELECT teacher_image FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_ID = ${id}`, (error, result, field) =>
-                            {
-                                if (error) reject(error);
-                                resolve(result);
-                            });
-
-                        });
+                        result = await db.query(`SELECT teacher_image FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_ID = ?`, [id]);
+                        resolve(result);
                         break;
                 }
-
-
             } catch (error)
             {
                 reject(error);

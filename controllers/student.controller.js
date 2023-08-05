@@ -25,30 +25,26 @@ const methods = {
     {
         try
         {
-            if (!req.query.amount) res.status(401).send("Bad request");
-            let majorAC = await studentServices.getByAmount(1, req.query.amount);
-            let majorBC = await studentServices.getByAmount(2, req.query.amount);
-            let majorCG = await studentServices.getByAmount(3, req.query.amount);
-            let majorFL = await studentServices.getByAmount(4, req.query.amount);
-            let majorHT = await studentServices.getByAmount(5, req.query.amount);
-            let majorIT = await studentServices.getByAmount(6, req.query.amount);
-            let majorMK = await studentServices.getByAmount(7, req.query.amount);
-            let majorTS = await studentServices.getByAmount(8, req.query.amount);
-            let data = {
-                majorAC,
-                majorBC,
-                majorCG,
-                majorFL,
-                majorHT,
-                majorIT,
-                majorMK,
-                majorTS
-            };
+            if (!req.query.amount)
+            {
+                return res.status(401).send("Bad request");
+            }
+
+            const majorIds = [1, 2, 3, 4, 5, 6, 7, 8];
+            const majorKeys = ['AC', 'BC', 'CG', 'FL', 'HT', 'IT', 'MK', 'TS'];
+            const data = {};
+
+            for (let i = 0; i < majorIds.length; i++)
+            {
+                const majorId = majorIds[i];
+                const majorKey = `major${majorKeys[i]}`;
+                data[majorKey] = await studentServices.getByAmount(majorId, req.query.amount);
+            }
+
             res.send({
                 status: true,
                 result: data
             });
-
         } catch (error)
         {
             console.log(error);
@@ -57,7 +53,8 @@ const methods = {
                 result: error
             });
         }
-    }, async onGetByClass(req, res)
+    }
+    , async onGetByClass(req, res)
     {
         try
         {

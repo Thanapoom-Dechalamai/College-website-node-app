@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const db = require('./db.service');
 require('dotenv').config();
 const methods = {
     getOne(id)
@@ -7,32 +7,14 @@ const methods = {
         {
             try
             {
-                console.log({
-                    host: process.env.DB_HOST,
-                    user: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE
-                });
-                const con = mysql.createConnection({
-                    host: process.env.DB_HOST,
-                    user: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE
-                });
-                con.connect((err) =>
-                {
-                    if (err) reject(err);
-                    const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_position', 'teacher_first_name',
-                        'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
-                        'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
-                        'teacher_email'];
-                    con.query(`SELECT ${column.join(', ')} FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_ID = ${id}`, (error, result, field) =>
-                    {
-                        if (error) reject(error);
-                        resolve(result);
-                    });
 
-                });
+                const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_position', 'teacher_first_name',
+                    'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
+                    'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
+                    'teacher_email'];
+
+                const result = await db.query(`SELECT ${column.join(', ')} FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_ID = ${id}`);
+                resolve(result);
 
             } catch (error)
             {
@@ -46,32 +28,13 @@ const methods = {
         {
             try
             {
-                console.log({
-                    host: process.env.DB_HOST,
-                    user: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE
-                });
-                const con = mysql.createConnection({
-                    host: process.env.DB_HOST,
-                    user: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE
-                });
-                con.connect((err) =>
-                {
-                    if (err) reject(err);
-                    const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_position', 'teacher_first_name',
-                        'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
-                        'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
-                        'teacher_email'];
-                    con.query(`SELECT ${column.join(', ')} FROM ${process.env.DB_TABLE_TEACHER}`, (error, result, field) =>
-                    {
-                        if (error) reject(error);
-                        resolve(result);
-                    });
+                const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_position', 'teacher_first_name',
+                    'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
+                    'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
+                    'teacher_email'];
 
-                });
+                const result = await db.query(`SELECT ${column.join(', ')} FROM ${process.env.DB_TABLE_TEACHER}`);
+                resolve(result);
 
             } catch (error)
             {
@@ -85,36 +48,32 @@ const methods = {
         {
             try
             {
-                const con = mysql.createConnection({
-                    host: process.env.DB_HOST,
-                    user: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE
-                });
-                con.connect(function (err)
+                let columns = ['teacher_ID', 'teacher_position', 'teacher_first_name',
+                    'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
+                    'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
+                    'teacher_email'];
+
+                const row = columns.map((element) =>
                 {
-                    if (err) reject(err);
-
-                    let columns = ['teacher_ID', 'teacher_position', 'teacher_first_name',
-                        'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
-                        'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
-                        'teacher_email'],
-                        values = [],
-                        row = [];
-                    for (const element of columns)
+                    if (object[element] == null)
                     {
-                        row.push(object[element]);
+                        reject('You have a missing field');
                     }
-                    values = [
-                        row
-                    ];
-                    con.query(`INSERT INTO ${process.env.DB_TABLE_TEACHER} (${columns.join(", ")}) VALUES ?`, [values], (error, result, fields) =>
-                    {
-                        if (error) reject(error);
-                        resolve(result);
-                    });
-
+                    return object[element];
                 });
+
+                const email = object['teacher_email'];
+                const emailIsValid = (await db.query(`SELECT teacher_email FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_email = ?`, [email])).length === 0;
+
+                if (emailIsValid)
+                {
+                    const result = await db.query(`INSERT INTO ${process.env.DB_TABLE_TEACHER} (${columns.join(", ")}) VALUES (${columns.map(() => "?").join(", ")})`, row);
+                    resolve(result);
+                } else
+                {
+                    reject('That email is already in use');
+                }
+
             } catch (error)
             {
                 reject(error);
@@ -128,50 +87,33 @@ const methods = {
         {
             try
             {
-                const con = mysql.createConnection({
-                    host: process.env.DB_HOST,
-                    user: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE
-                });
-                con.connect(function (err)
+                let allowedcolumns = ['teacher_ID', 'teacher_position', 'teacher_first_name',
+                    'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
+                    'teacher_gender', 'teacher_major', 'teacher_phone', 'student_line_ID', 'teacher_image',
+                    'teacher_email']; //all columns that can be updated
+
+                let columns = [];
+                let values = [];
+
+                for (let c of allowedcolumns)
                 {
-                    if (err) reject(error);
-
-                    let allowedcolumns = ['teacher_ID', 'teacher_position', 'teacher_first_name',
-                        'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
-                        'teacher_gender', 'teacher_major', 'teacher_phone', 'student_line_ID', 'teacher_image',
-                        'teacher_email'], //all columns that can be updated
-                        columns = [],
-                        values = [];
-
-                    for (let c of allowedcolumns)
+                    if (c in object)
                     {
-                        if (c in object)
-                        {  //check if there is a value for that column in the request body
-                            columns.push(`${c} = ?`),
-                                values.push(object[c]);
-                        }
+                        //check if there is a value for that column in the request body
+                        columns.push(`${c} = ?`);
+                        values.push(object[c]);
                     }
+                }
 
-                    if (columns.length == 0)
-                    {
-                        return res.sendStatus(204);
-                    }
+                if (columns.length == 0)
+                {
+                    return res.sendStatus(204);
+                }
 
-                    con.query(`UPDATE ${process.env.DB_TABLE_TEACHER} SET ${columns.join(", ")} WHERE primary_teacher_ID = ${id}`, values, (err, result) =>
-                    {
-                        if (err)
-                        {
-                            console.log("err" + err);
-                            reject(err);
-                        } else
-                        {
-                            resolve(result);
-                        }
-                    });
+                const updateColumns = columns.join(', ');
+                const result = await db.query(`UPDATE ${process.env.DB_TABLE_TEACHER} SET ${updateColumns} WHERE primary_teacher_ID = ?`, [...values, id]);
+                resolve(result);
 
-                });
             } catch (error)
             {
                 reject(error);
@@ -185,22 +127,8 @@ const methods = {
         {
             try
             {
-                const con = mysql.createConnection({
-                    host: process.env.DB_HOST,
-                    user: process.env.DB_USERNAME,
-                    password: process.env.DB_PASSWORD,
-                    database: process.env.DB_DATABASE
-                });
-                con.connect(function (err)
-                {
-                    if (err) reject(err);
-                    con.query(`DELETE FROM ${process.env.DB_TABLE_TEACHER} WHERE primary_teacher_ID = '${id}'`, (error, result, fields) =>
-                    {
-                        if (error) reject(error);
-                        resolve(result);
-                    });
-
-                });
+                const result = await db.query(`DELETE FROM ${process.env.DB_TABLE_TEACHER} WHERE primary_teacher_ID = ?`, [id]);
+                resolve(result);
             } catch (error)
             {
                 reject(error);

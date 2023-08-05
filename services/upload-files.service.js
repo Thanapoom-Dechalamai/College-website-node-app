@@ -1,6 +1,5 @@
-require('dotenv').config();
 const ftp = require('ftp');
-
+const ftpConfig = require('../configs/db.config').ftpConfig;
 const methods = {
     upLoadImage(filePath, data)
     {
@@ -8,13 +7,6 @@ const methods = {
         {
             try
             {
-                const ftpConfig = {
-                    host: process.env.DB_HOST,
-                    port: process.env.DB_PORT,
-                    user: process.env.FTP_USER,
-                    password: process.env.FTP_PASSWORD,
-                };
-
                 // Create a new FTP client
                 const client = new ftp();
 
