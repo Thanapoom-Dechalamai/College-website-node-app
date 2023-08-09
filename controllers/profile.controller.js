@@ -37,6 +37,7 @@ const methods = {
 
         const profileData = {
             primary_profile_ID: result[0]['primary_' + (authHeader.user_role === 1 ? 'student' : 'teacher') + '_ID'],
+            profile_position: result[0][authHeader.user_role === 1 ? 'student_position' : 'teacher_position'],
             profile_ID: result[0][authHeader.user_role === 1 ? 'student_ID' : 'teacher_ID'],
             profile_first_name: result[0][authHeader.user_role === 1 ? 'student_first_name' : 'teacher_first_name'],
             profile_last_name: result[0][authHeader.user_role === 1 ? 'student_last_name' : 'teacher_last_name'],
