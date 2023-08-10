@@ -3,6 +3,7 @@ const controller = require('../../controllers/document.controller');
 
 router.get('/getAll', controller.onGetAll);
 router.post('/getOne', controller.onGetByID);
+router.post('/create', controller.onCreateOne);
 router.post('/update', controller.onUpdateAt);
 router.post('/remove', controller.onRemove);
 
