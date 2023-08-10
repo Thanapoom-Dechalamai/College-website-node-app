@@ -10,5 +10,7 @@ router.use('/image', require('./image'));
 router.use('/profile', require('./profile'));
 router.use('/forms', require('./forms'));
 router.use('/upload', require('./upload-files'));
+router.use('/document', require('./document'));
+router.use('/club', require('./club'));
 
 module.exports = router;
