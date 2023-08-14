@@ -11,12 +11,18 @@ const controller = require('../../controllers/club.controller');
  *           type: string
  *         club_major:
  *           type: number
+ *         club_teacher:
+ *           type: string
+ *         club_description:
+ *           type: string
+ *         club_image:
+ *           type: string
  *         club_status:
  *           type: number
  *         club_capacity:
  *           type: number
  *      
- *     UpdateClubInput:
+*     UpdateClubInput:
  *       type: object
  *       properties:
  *         id:
@@ -28,6 +34,12 @@ const controller = require('../../controllers/club.controller');
  *               type: string
  *             club_major:
  *               type: number
+ *             club_teacher:
+ *               type: string
+ *             club_description:
+ *               type: string
+ *             club_image:
+ *               type: string
  *             club_status:
  *               type: number
  *             club_capacity:

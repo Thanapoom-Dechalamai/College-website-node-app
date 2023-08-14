@@ -40,7 +40,7 @@ const methods = {
         {
             try
             {
-                const columns = ['club_name', 'club_major', 'club_status', 'club_capacity'];
+                const columns = ['club_name', 'club_major', 'club_teacher', 'club_description', 'club_image', 'club_status', 'club_capacity'];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill('?').join(', ');
                 const sql = `INSERT INTO ${process.env.DB_TABLE_CLUB} (${columns.join(", ")}) VALUES (${placeholders})`;
@@ -58,7 +58,7 @@ const methods = {
     {
         return new Promise((resolve, reject) =>
         {
-            const allowedcolumns = ['club_name', 'club_major', 'club_status', 'club_capacity'];
+            const allowedcolumns = ['club_name', 'club_major', 'club_teacher', 'club_description', 'club_image', 'club_status', 'club_capacity'];
             const columns = [];
             const values = [];
 
