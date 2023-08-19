@@ -9,7 +9,7 @@ const options = {
             description: 'API documentation for SBAC Profile API App',
         },
     },
-    apis: ['./routes/api/student.js', './routes/api/teacher.js', './routes/api/club.js', './routes/api/club-membership.js', './routes/api/auth.js'], // Path to the API routes
+    apis: ['./routes/api/student.js', './routes/api/teacher.js', './routes/api/club.js', './routes/api/club-membership.js', './routes/api/auth.js', './routes/api/request-form.js'], // Path to the API routes
 };
 
 const swaggerSpec = swaggerJSDoc(options);
