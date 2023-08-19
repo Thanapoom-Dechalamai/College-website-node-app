@@ -41,6 +41,24 @@ const methods = {
             }
         });
     },
+    getInfo()
+    {
+        return new Promise(async (resolve, reject) =>
+        {
+            try
+            {
+                let columns = ['student_ID', 'student_first_name',
+                    'student_last_name', 'student_first_name_thai', 'student_last_name_thai'];
+
+                const result = await db.query(`SELECT ${columns.join(', ')} FROM ${process.env.DB_TABLE_STUDENT}`);
+                resolve(result);
+
+            } catch (error)
+            {
+                reject(error);
+            }
+        });
+    },
     getByAmount(major, amount)
     {
         return new Promise(async (resolve, reject) =>

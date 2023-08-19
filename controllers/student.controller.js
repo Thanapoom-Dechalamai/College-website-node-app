@@ -21,6 +21,25 @@ const methods = {
             });
         }
     },
+    async onGetInfo(req, res)
+    {
+        try
+        {
+            let list = await studentServices.getInfo();
+            res.send({
+                status: true,
+                result: list
+            });
+
+        } catch (error)
+        {
+            console.log(error);
+            res.send({
+                status: false,
+                result: error
+            });
+        }
+    },
     async onGetByAmount(req, res)
     {
         try

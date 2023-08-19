@@ -101,6 +101,28 @@ const controller = require('../../controllers/student.controller');
 router.get('/getAll', controller.onGetAll);
 /**
  * @swagger
+ * /api/v1/student/getInfo:
+ *   get:
+ *     summary: Get all students info
+ *     tags: [Student]
+ *     responses:
+ *       200:
+ *         description: OK
+ */
+router.get('/getInfo', controller.onGetInfo);
+/**
+ * @swagger
+ * /api/v1/student/getAll:
+ *   get:
+ *     summary: Get all students
+ *     tags: [Student]
+ *     responses:
+ *       200:
+ *         description: OK
+ */
+router.get('/getAll', controller.onGetAll);
+/**
+ * @swagger
  * /api/v1/student/getByAmount?amount={amount}:
  *   get:
  *     summary: Get students from each major by amount.
