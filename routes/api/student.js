@@ -82,7 +82,7 @@ const controller = require('../../controllers/student.controller');
  *             student_email:
  *               type: string
  *      
- *     DeleteStudentInput:
+ *     IDInput:
  *       type: object
  *       properties:
  *         id:
@@ -110,17 +110,6 @@ router.get('/getAll', controller.onGetAll);
  *         description: OK
  */
 router.get('/getInfo', controller.onGetInfo);
-/**
- * @swagger
- * /api/v1/student/getAll:
- *   get:
- *     summary: Get all students
- *     tags: [Student]
- *     responses:
- *       200:
- *         description: OK
- */
-router.get('/getAll', controller.onGetAll);
 /**
  * @swagger
  * /api/v1/student/getByAmount?amount={amount}:
@@ -227,7 +216,7 @@ router.post('/update', controller.onUpdateAt);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/DeleteStudentInput'
+ *             $ref: '#/components/schemas/IDInput'
  *     responses:
  *       200:
  *         description: Student deleted successfully

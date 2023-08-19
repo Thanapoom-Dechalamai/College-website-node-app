@@ -73,12 +73,7 @@ const controller = require('../../controllers/teacher.controller');
  *               type: string
  *             teacher_email:
  *               type: string
- *      
- *     DeleteTeacherInput:
- *       type: object
- *       properties:
- *         id:
- *           type: number
+ *
  */
 /**
  * @swagger
@@ -147,7 +142,7 @@ router.post('/update', controller.onUpdateAt);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/DeleteTeacherInput'
+ *             $ref: '#/components/schemas/IDInput'
  *     responses:
  *       200:
  *         description: Teacher deleted successfully

@@ -25,11 +25,6 @@ const controller = require('../../controllers/club-membership.controller');
  *             club_student:
  *               type: number
  *      
- *     ClubMembershipIDInput:
- *       type: object
- *       properties:
- *         id:
- *           type: number
  */
 
 /**
@@ -55,7 +50,7 @@ router.get('/getAll', controller.onGetAll);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ClubMembershipIDInput'
+ *             $ref: '#/components/schemas/IDInput'
  *     responses:
  *       200:
  *         description: Successfully
@@ -121,7 +116,7 @@ router.post('/update', controller.onUpdateAt);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ClubMembershipIDInput'
+ *             $ref: '#/components/schemas/IDInput'
  *     responses:
  *       200:
  *         description: Club deleted successfully

@@ -45,11 +45,6 @@ const controller = require('../../controllers/club.controller');
  *             club_capacity:
  *               type: number
  *      
- *     ClubIDInput:
- *       type: object
- *       properties:
- *         id:
- *           type: number
  */
 /**
  * @swagger
@@ -74,7 +69,7 @@ router.get('/getAll', controller.onGetAll);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ClubIDInput'
+ *             $ref: '#/components/schemas/IDInput'
  *     responses:
  *       200:
  *         description: Successfully
@@ -140,7 +135,7 @@ router.post('/update', controller.onUpdateAt);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ClubIDInput'
+ *             $ref: '#/components/schemas/IDInput'
  *     responses:
  *       200:
  *         description: Club deleted successfully
