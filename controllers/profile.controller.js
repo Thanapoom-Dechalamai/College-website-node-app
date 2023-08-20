@@ -8,7 +8,7 @@ const methods = {
         const authHeader = verifyAuthorization(req);
         console.log(authHeader);
 
-        if (!authHeader?.user_role || !authHeader?.user_role_id)
+        if (!authHeader?.user_role || !authHeader?.user_role_ID)
         {
             return res.send({
                 status: false,
@@ -20,10 +20,10 @@ const methods = {
         switch (authHeader.user_role)
         {
             case 1:
-                result = await studentServices.getOne(authHeader.user_role_id);
+                result = await studentServices.getOne(authHeader.user_role_ID);
                 break;
             case 2:
-                result = await teacherServices.getOne(authHeader.user_role_id);
+                result = await teacherServices.getOne(authHeader.user_role_ID);
                 break;
         }
 
