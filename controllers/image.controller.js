@@ -6,7 +6,7 @@ const methods = {
     {
         const authHeader = verifyAuthorization(req);
         console.log(authHeader);
-        if (!authHeader?.user_role || !authHeader?.user_role_id)
+        if (!authHeader?.user_role || !authHeader?.user_role_ID)
         {
             return res.send({
                 status: false,
@@ -14,7 +14,7 @@ const methods = {
             });
         }
 
-        const result = await imageService.getImage(authHeader.user_role, authHeader.user_role_id);
+        const result = await imageService.getImage(authHeader.user_role, authHeader.user_role_ID);
         console.log(result);
         if (authHeader.user_role == 1)
         {
