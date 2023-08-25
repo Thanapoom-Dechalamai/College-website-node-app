@@ -10,7 +10,7 @@ app.use(fileUpload());
 app.use(express.json());
 app.use(
     cors({
-        origin: "*"
+        origin: ["https://blauens.com", "http://blauenthepeople.com", "http://localhost:5173", "http://localhost:5174"]
     })
 );
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
