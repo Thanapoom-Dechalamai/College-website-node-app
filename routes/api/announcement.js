@@ -7,23 +7,35 @@ const controller = require('../../controllers/announcement.controller');
  *     CreateAnnouncementInput:
  *       type: object
  *       properties:
- *         club_ID:
+ *         announcement_status:
  *           type: number
- *         club_student:
- *           type: number
+ *         announcement_title:
+ *           type: string
+ *         announcement_description:
+ *           type: string
+ *         announcement_image:
+ *           type: string
+ *         announcement_create_datetime:
+ *           type: string
  *      
  *     UpdateAnnouncementInput:
  *       type: object
  *       properties:
  *         id:
  *           type: number
- *         clubMembershipInfo:
+ *         announcementInfo:
  *           type: object
  *           properties:
- *             club_ID:
- *               type: number
- *             club_student:
- *               type: number
+ *              announcement_status:
+ *                  type: number
+ *              announcement_title:
+ *                  type: string
+ *              announcement_description:
+ *                  type: string
+ *              announcement_image:
+ *                  type: string
+ *              announcement_create_datetime:
+ *                  type: string
  *      
  */
 
