@@ -91,6 +91,28 @@ const method = {
                 result: error
             });
         }
+    },
+    async onUploadClub(req, res)
+    {
+        try
+        {
+            if (!req.files['image'] || !req.body.filename) return res.status(401).send("Bad request");
+            const path = '/assets/profilePic/clubs' + req.body.filename;
+            const data = req.files['image'].data;
+            let result = await uploadFilesService.upLoadImage(path, data);
+            res.send({
+                status: true,
+                result
+            });
+
+        } catch (error)
+        {
+            console.log(error);
+            res.send({
+                status: false,
+                result: error
+            });
+        }
     }
 };
 

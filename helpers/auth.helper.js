@@ -2,26 +2,24 @@ const jwt = require("jsonwebtoken");
 const config = require("../configs/app");
 
 const methods = {
-    verifyAuthorization(req)
+    async requireAuth(req, res, next)
     {
         try
         {
-            console.log(req?.headers?.["authorization"]);
-            if (req?.headers?.["authorization"])
-            {
-                console.log(jwt.verify(req.headers["authorization"], config.secret), 'abc');
-                return jwt.verify(req.headers["authorization"], config.secret);
-            } else
-            {
-                console.log('error!');
-            }
-            return null;
-        } catch (e)
+            if (!req.headers.authorization) return res.status(401).json({
+                message: 'Unauthorization'
+            });
+            const token = (req.headers.authorization.includes(" ")) ? req.headers.authorization.split(" ")[1] : req.headers.authorization;
+            const user = jwt.verify(token, config.secret);
+            req.user = user;
+            next();
+        } catch (error)
         {
-            console.log(e.message);
-            return null;
+            return res.status(400).json({
+                message: error.message
+            });
         }
-    },
+    }
 };
 
 module.exports = { ...methods };
