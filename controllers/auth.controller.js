@@ -1,6 +1,5 @@
 
 const authService = require('../services/auth.service');
-const { verifyAuthorization } = require("../helpers/auth.helper");
 
 const method = {
     async onLogin(req, res)
@@ -30,9 +29,8 @@ const method = {
         try
         {
             if (!req.body || !req.body.password) res.status(401).send("Bad request");
-            const authHeader = verifyAuthorization(req);
 
-            if (!authHeader?.user_role || !authHeader?.user_role_ID)
+            if (!req.user?.user_role || !req.user?.user_role_ID)
             {
                 return res.send({
                     status: false,
@@ -40,7 +38,7 @@ const method = {
                 });
             }
 
-            let result = await authService.changePassword(authHeader.user_role_ID, req.body.password);
+            let result = await authService.changePassword(req.user.user_role_ID, req.body.password);
             res.send({
                 status: true,
                 result

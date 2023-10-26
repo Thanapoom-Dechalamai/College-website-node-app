@@ -1,12 +1,10 @@
-const { verifyAuthorization } = require("../helpers/auth.helper");
 const imageService = require("../services/image.service");
 
 const methods = {
     async onGetImage(req, res)
     {
-        const authHeader = verifyAuthorization(req);
-        console.log(authHeader);
-        if (!authHeader?.user_role || !authHeader?.user_role_ID)
+        console.log(req.user);
+        if (!req.user?.user_role || !req.user?.user_role_ID)
         {
             return res.send({
                 status: false,
@@ -14,9 +12,9 @@ const methods = {
             });
         }
 
-        const result = await imageService.getImage(authHeader.user_role, authHeader.user_role_ID);
+        const result = await imageService.getImage(req.user.user_role, req.user.user_role_ID);
         console.log(result);
-        if (authHeader.user_role == 1)
+        if (req.user.user_role == 1)
         {
             res.send({
                 status: true,
