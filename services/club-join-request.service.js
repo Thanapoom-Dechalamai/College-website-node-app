@@ -24,7 +24,7 @@ const methods = {
         {
             try
             {
-                const columns = ['club_join_request_club_ID', 'club_join_request_student_ID', 'club_join_request_create_datetime'];
+                const columns = ['club_join_request_status', 'club_join_request_club_ID', 'club_join_request_student_ID', 'club_join_request_create_datetime'];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill('?').join(', ');
                 const sql = `INSERT INTO ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} (${columns.join(", ")}) VALUES (${placeholders})`;

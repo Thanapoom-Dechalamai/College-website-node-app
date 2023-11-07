@@ -1,5 +1,6 @@
 const db = require('./db.service');
 require('dotenv').config();
+
 const methods = {
     getOne(id)
     {
