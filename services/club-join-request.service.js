@@ -35,7 +35,7 @@ const methods = {
             {
                 reject(error);
             }
-        })
+        });
     },
     updateAt(id, object)
     {
