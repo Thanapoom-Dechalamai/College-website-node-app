@@ -13,6 +13,7 @@ router.use('/forms', require('./forms'));
 router.use('/upload', require('./upload-files'));
 router.use('/document', require('./document'));
 router.use('/club', require('./club'));
+router.use('/clubJoinRequest', require('./club-join-request'));
 router.use('/clubMembership', require('./club-membership'));
 router.use('/announcement', require('./announcement'));
 
