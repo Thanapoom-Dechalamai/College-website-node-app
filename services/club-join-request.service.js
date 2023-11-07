@@ -43,10 +43,12 @@ const methods = {
         {
             const allowedcolumns = ['club_join_request_status', 'club_join_request_status_change_datetime'];
             const columns = [];
+            const values = [];
 
             for (const c of allowedcolumns)
             {
-                if (c in object) {
+                if (c in object)
+                {
                     columns.push(`${c} = ?`);
                     values.push(object[c])
                 }
@@ -60,13 +62,13 @@ const methods = {
             const query = `UPDATE ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} SET ${columns.join(", ")} WHERE club_join_request_ID = ?`;
             db.query(query, [...values, id])
             .then(result =>
-                {
-                    resolve(result);
-                })
-                .catch(error =>
-                {
-                    reject(error);
-                })
+            {
+                resolve(result);
+            })
+            .catch(error =>
+            {
+                reject(error);
+            })
         });
     },
 
