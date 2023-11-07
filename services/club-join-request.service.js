@@ -43,7 +43,6 @@ const methods = {
         {
             const allowedcolumns = ['club_join_request_status', 'club_join_request_status_change_datetime'];
             const columns = [];
-            const value = [];
 
             for (const c of allowedcolumns)
             {
@@ -58,7 +57,7 @@ const methods = {
                 return reject('No columns to update');
             }
 
-            const query = `UPDATE ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} SET ${columns.join(", ")} WHERE club_ID = ?`;
+            const query = `UPDATE ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} SET ${columns.join(", ")} WHERE club_join_request_ID = ?`;
             db.query(query, [...values, id])
             .then(result =>
                 {
@@ -75,7 +74,7 @@ const methods = {
     {
         return new Promise((resolve, reject) =>
         {
-            const query = `DELETE FROM ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} WHERE club_ID = ?`;
+            const query = `DELETE FROM ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} WHERE club_join_request_ID = ?`;
             db.query(query, [id])
             .then(result =>
                 {
