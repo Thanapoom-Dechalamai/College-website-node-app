@@ -6,7 +6,9 @@ const method = {
     async onGetAll(req, res) {
         try {
             let list = await clubJoinRequest_service.getAll();
-            handleResponse(res, 200, { status: true, result: list });
+            
+            const { status, result } = list;
+            handleResponse(res, status, { status, result });
         } catch (error) {
             handleResponse(res, 500, { status: false, result: "Internal Server Error" });
         }
