@@ -1,27 +1,20 @@
 const router = require("express").Router();
 const { requireAuth } = require('../../helpers/auth.helper');
 
-router.use('/example', require('./example'));
-router.use('/image', requireAuth, require('./image'));
-router.use('/profile', requireAuth, require('./profile'));
-
 router.use('/auth', require('./auth'));
-
-router.use('/announcement', require('./announcement'));
-
 router.use('/student', require('./student'));
 router.use('/teacher', require('./teacher'));
-router.use('/classroom', require('./classroom'));
+router.use('/example', require('./example'));
 router.use('/major', require('./major'));
-
+router.use('/classroom', require('./classroom'));
+router.use('/image', requireAuth, require('./image'));
+router.use('/profile', requireAuth, require('./profile'));
 router.use('/forms', require('./forms'));
 router.use('/upload', require('./upload-files'));
 router.use('/document', require('./document'));
-
-// Clubs //
 router.use('/club', require('./club'));
 router.use('/clubJoinRequest', require('./club-join-request'));
 router.use('/clubMembership', require('./club-membership'));
-router.use('/clubManager', require('./club-manager'));
+router.use('/announcement', require('./announcement'));
 
 module.exports = router;

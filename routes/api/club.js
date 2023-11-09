@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const controller = require('../../../controllers/club/club.controller');
-
+const controller = require('../../controllers/club.controller');
 /**
  * @swagger
  * components:
@@ -58,7 +57,28 @@ const controller = require('../../../controllers/club/club.controller');
  *         description: OK
  */
 router.get('/getAll', controller.onGetAll);
-
+/**
+ * @swagger
+ * /api/v1/club/getOne:
+ *   post:
+ *     summary: Get one club by ID
+ *     tags: [Club]
+ *     requestBody:
+ *       description: Club ID object
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/IDInput'
+ *     responses:
+ *       200:
+ *         description: Successfully
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Internal server error
+ */
+router.post('/getOne', controller.onGetByID);
 /**
  * @swagger
  * /api/v1/club/create:
@@ -80,8 +100,7 @@ router.get('/getAll', controller.onGetAll);
  *       500:
  *         description: Internal server error
  */
-router.post('/create', controller.onCreate);
-
+router.post('/create', controller.onCreateOne);
 /**
  * @swagger
  * /api/v1/club/update:
@@ -103,11 +122,10 @@ router.post('/create', controller.onCreate);
  *       500:
  *         description: Internal server error
  */
-router.post('/update', controller.onUpdate);
-
+router.post('/update', controller.onUpdateAt);
 /**
  * @swagger
- * /api/v1/club/delete:
+ * /api/v1/club/remove:
  *   post:
  *     summary: Delete a club
  *     tags: [Club]
@@ -126,6 +144,6 @@ router.post('/update', controller.onUpdate);
  *       500:
  *         description: Internal server error
  */
-router.post('/delete', controller.onDelete);
+router.post('/remove', controller.onRemove);
 
 module.exports = router;
