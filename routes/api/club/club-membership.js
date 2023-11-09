@@ -1,58 +1,39 @@
 const router = require("express").Router();
-const controller = require("../../controllers/club.controller");
+const controller = require("../../../controllers/club/club-membership.controller");
 
 /**
  * @swagger
  * components:
  *   schemas:
- *     CreateClubInput:
+ *     CreateClubMembershipInput:
  *       type: object
  *       properties:
- *         club_name:
- *           type: string
- *         club_major:
+ *         club_ID:
  *           type: number
- *         club_teacher:
- *           type: string
- *         club_description:
- *           type: string
- *         club_image:
- *           type: string
- *         club_status:
- *           type: number
- *         club_capacity:
+ *         club_student:
  *           type: number
  *      
-*     UpdateClubInput:
+ *     UpdateClubMembershipInput:
  *       type: object
  *       properties:
  *         id:
  *           type: number
- *         clubInfo:
+ *         clubMembershipInfo:
  *           type: object
  *           properties:
- *             club_name:
- *               type: string
- *             club_major:
+ *             club_ID:
  *               type: number
- *             club_teacher:
- *               type: string
- *             club_description:
- *               type: string
- *             club_image:
- *               type: string
- *             club_status:
- *               type: number
- *             club_capacity:
+ *             club_student:
  *               type: number
  *      
  */
+
 /**
  * @swagger
- * /api/v1/club/getAll:
+ * /api/v1/clubMembership/getAll:
  *   get:
- *     summary: Get all club
- *     tags: [Club]
+ *     summary: Get all club membership
+ *     tags: [ClubMembership]
  *     responses:
  *       200:
  *         description: OK
@@ -61,17 +42,17 @@ router.get("/getAll", controller.onGetAll);
 
 /**
  * @swagger
- * /api/v1/club/create:
+ * /api/v1/clubMembership/create:
  *   post:
  *     summary: Create a new club
- *     tags: [Club]
+ *     tags: [ClubMembership]
  *     requestBody:
  *       description: Club object to be created
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/CreateClubInput"
+ *             $ref: "#/components/schemas/CreateClubMembershipInput"
  *     responses:
  *       200:
  *         description: Club created successfully
@@ -84,17 +65,17 @@ router.post("/create", controller.onCreate);
 
 /**
  * @swagger
- * /api/v1/club/update:
+ * /api/v1/clubMembership/update:
  *   post:
  *     summary: Update a club
- *     tags: [Club]
+ *     tags: [ClubMembership]
  *     requestBody:
  *       description: Club object to be updated
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: "#/components/schemas/UpdateClubInput"
+ *             $ref: "#/components/schemas/UpdateClubMembershipInput"
  *     responses:
  *       200:
  *         description: Club updated successfully
@@ -107,10 +88,10 @@ router.post("/update", controller.onUpdate);
 
 /**
  * @swagger
- * /api/v1/club/delete:
+ * /api/v1/clubMembership/remove:
  *   post:
  *     summary: Delete a club
- *     tags: [Club]
+ *     tags: [ClubMembership]
  *     requestBody:
  *       description: Club object to be deleted
  *       required: true

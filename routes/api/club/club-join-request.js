@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const controller = require("../../controllers/club-manager.controller");
+const controller = require("../../../controllers/club/club-join-request.controller");
 
 router.get("/getAll", controller.onGetAll);
 router.post("/create", controller.onCreate);
