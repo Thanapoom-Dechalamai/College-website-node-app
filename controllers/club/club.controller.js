@@ -5,12 +5,16 @@ const method = {
     // Get all //
     async onGetAll(req, res) {
         try {
-            let list = await club_service.getAll();
-
-            const { status, result } = list;
-            handleResponse(res, status, { status, result });
+            let result = await club_service.getAll();
+            res.send({
+                status: true,
+                result: result
+            });
         } catch (error) {
-            handleResponse(res, 500, { status: false, result: "Internal Server Error" });
+            res.send({
+                status: false,
+                result: error
+            });
         }
     },
 
@@ -22,9 +26,15 @@ const method = {
             }
 
             let result = await club_service.createOne(req.body);
-            handleResponse(res, 200, { status: true, result });
+            res.send({
+                status: true,
+                result: result
+            });
         } catch (error) {
-            handleResponse(res, 500, { status: false, result: "Internal Server Error" });
+            res.send({
+                status: false,
+                result: error
+            });
         }
     },
 
@@ -36,9 +46,15 @@ const method = {
             }
 
             let result = await club_service.updateOne(req.body.id, req.body.clubInfo);
-            handleResponse(res, 200, { status: true, result });
+            res.send({
+                status: true,
+                result: result
+            });
         } catch (error) {
-            handleResponse(res, 500, { status: false, result: "Internal Server Error" });
+            res.send({
+                status: false,
+                result: error
+            });
         }
     },
 
@@ -50,9 +66,15 @@ const method = {
             }
 
             let result = await club_service.deleteOne(req.body.id);
-            handleResponse(res, 200, { status: true, result });
+            res.send({
+                status: true,
+                result: result
+            });
         } catch (error) {
-            handleResponse(res, 500, { status: false, result: "Internal Server Error" });
+            res.send({
+                status: false,
+                result: error
+            });
         }
     }
 };
