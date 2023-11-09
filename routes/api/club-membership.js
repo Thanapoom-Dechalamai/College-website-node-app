@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const controller = require('../../controllers/club-membership.controller');
+const controller = require("../../controllers/club-membership.controller");
+
 /**
  * @swagger
  * components:
@@ -37,29 +38,8 @@ const controller = require('../../controllers/club-membership.controller');
  *       200:
  *         description: OK
  */
-router.get('/getAll', controller.onGetAll);
-/**
- * @swagger
- * /api/v1/clubMembership/getOne:
- *   post:
- *     summary: Get one club by ID
- *     tags: [ClubMembership]
- *     requestBody:
- *       description: Club Membership ID object
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/IDInput'
- *     responses:
- *       200:
- *         description: Successfully
- *       400:
- *         description: Bad request
- *       500:
- *         description: Internal server error
- */
-router.post('/getOne', controller.onGetByID);
+router.get("/getAll", controller.onGetAll);
+
 /**
  * @swagger
  * /api/v1/clubMembership/create:
@@ -72,7 +52,7 @@ router.post('/getOne', controller.onGetByID);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateClubMembershipInput'
+ *             $ref: "#/components/schemas/CreateClubMembershipInput"
  *     responses:
  *       200:
  *         description: Club created successfully
@@ -81,7 +61,8 @@ router.post('/getOne', controller.onGetByID);
  *       500:
  *         description: Internal server error
  */
-router.post('/create', controller.onCreateOne);
+router.post("/create", controller.onCreate);
+
 /**
  * @swagger
  * /api/v1/clubMembership/update:
@@ -94,7 +75,7 @@ router.post('/create', controller.onCreateOne);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateClubMembershipInput'
+ *             $ref: "#/components/schemas/UpdateClubMembershipInput"
  *     responses:
  *       200:
  *         description: Club updated successfully
@@ -103,7 +84,8 @@ router.post('/create', controller.onCreateOne);
  *       500:
  *         description: Internal server error
  */
-router.post('/update', controller.onUpdateAt);
+router.post("/update", controller.onUpdate);
+
 /**
  * @swagger
  * /api/v1/clubMembership/remove:
@@ -116,7 +98,7 @@ router.post('/update', controller.onUpdateAt);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/IDInput'
+ *             $ref: "#/components/schemas/IDInput"
  *     responses:
  *       200:
  *         description: Club deleted successfully
@@ -125,6 +107,6 @@ router.post('/update', controller.onUpdateAt);
  *       500:
  *         description: Internal server error
  */
-router.post('/remove', controller.onRemove);
+router.post("/delete", controller.onDelete);
 
 module.exports = router;

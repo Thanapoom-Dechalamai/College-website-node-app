@@ -1,93 +1,49 @@
-const db = require('./db.service');
-require('dotenv').config();
+const db = require("../db.service");
+require("dotenv").config();
 
 const methods = {
-    getAll()
-    {
-        return new Promise((resolve, reject) =>
-        {
-            const query = `SELECT * FROM ${process.env.DB_TABLE_CLUB_JOIN_REQUEST}`;
-            db.query(query)
-            .then(result =>
-                {
-                    resolve(result);
-                })
-                .catch(error =>
-                    {
-                        reject(error);
-                    });
-        })
-    },
-    addOne(object)
-    {
-        return new Promise(async (resolve, reject) =>
-        {
-            try
-            {
-                const columns = ['club_join_request_status', 'club_join_request_club_ID', 'club_join_request_student_ID', 'club_join_request_create_datetime'];
-                const values = columns.map(column => object[column]);
-                const placeholders = new Array(values.length).fill('?').join(', ');
-                const sql = `INSERT INTO ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} (${columns.join(", ")}) VALUES (${placeholders})`;
-                console.log(values);
-                const results = await db.query(sql, values);
-                resolve(results);
-            } catch (error)
-            {
-                reject(error);
-            }
-        });
-    },
-    updateAt(id, object)
-    {
-        return new Promise((resolve, reject) =>
-        {
-            const allowedcolumns = ['club_join_request_status', 'club_join_request_status_change_datetime'];
-            const columns = [];
-            const values = [];
-
-            for (const c of allowedcolumns)
-            {
-                if (c in object)
-                {
-                    columns.push(`${c} = ?`);
-                    values.push(object[c])
-                }
-            }
-
-            if (columns.length === 0)
-            {
-                return reject('No columns to update');
-            }
-
-            const query = `UPDATE ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} SET ${columns.join(", ")} WHERE club_join_request_ID = ?`;
-            db.query(query, [...values, id])
-            .then(result =>
-            {
-                resolve(result);
-            })
-            .catch(error =>
-            {
-                reject(error);
-            })
-        });
+    // Get all //
+    getAll() {
+        const sqlQuery = `SELECT * FROM ${process.env.DB_TABLE_CLUB_JOIN_REQUEST}`
+        return db.query(sqlQuery);
     },
 
-    removeAt(id)
-    {
-        return new Promise((resolve, reject) =>
-        {
-            const query = `DELETE FROM ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} WHERE club_join_request_ID = ?`;
-            db.query(query, [id])
-            .then(result =>
-                {
-                    resolve(result);
-                })
-                .catch(error =>
-                {
-                    reject(error);
-                });
-        });
+    // Create //
+    createOne(object) {
+        const columns = ["club_join_request_status", "club_join_request_club_ID", "club_join_request_student_ID", "club_join_request_create_datetime"];
+        const values = columns.map(column => object[column]);
+        const placeholders = new Array(values.length).fill("?").join(", ");
+
+        const sqlQuery = `INSERT INTO ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} (${columns.join(", ")}) VALUES (${placeholders})`;
+        return db.query(sqlQuery, values);
+    },
+
+    // Update //
+    async updateOne(id, object) {
+        const allowedColumns = ["club_join_request_status", "club_join_request_status_change_datetime"];
+        const columns = [];
+        const values = [];
+
+        for (const column of allowedColumns) {
+            if (column in object) {
+                columns.push(`${column} = ?`);
+                values.push(object[column])
+            }
+        }
+
+        if (columns.length === 0) {
+            return Promise.reject(new Error('No columns to update.'));
+        }
+
+        const sqlQuery = `UPDATE ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} SET ${columns.join(", ")} WHERE club_join_request_ID = ?`;
+        return db.query(sqlQuery, [...values, id]);
+    },
+
+    // Delete //
+    deleteOne(id) {
+        const sqlQuery = `DELETE FROM ${process.env.DB_TABLE_CLUB_JOIN_REQUEST} WHERE club_join_request_ID = ?`;
+        return db.query(sqlQuery, [id]);
     }
 }
 
-module.exports = { ...methods }
+module.exports = { ...methods };

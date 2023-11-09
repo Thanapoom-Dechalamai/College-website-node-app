@@ -1,83 +1,56 @@
-const clubJoinRequestService = require('../services/club-join-request.service');
+const clubJoinRequest_service = require('../services/club-join-request.service');
+const handleResponse = require("../functions/handleResponse.function");
+
 const method = {
-    async onGetAll(req, res)
-    {
-        try
-        {
-            let list = await clubJoinRequestService.getAll();
-            console.log(list);
-            res.send({
-                status: true,
-                result: list
-            });
-        } catch (error)
-        {
-            console.log(error);
-            res.send({
-                status: false,
-                result: error
-            });
+    // Get all //
+    async onGetAll(req, res) {
+        try {
+            let list = await clubJoinRequest_service.getAll();
+            handleResponse(res, 200, { status: true, result: list });
+        } catch (error) {
+            handleResponse(res, 500, { status: false, result: "Internal Server Error" });
         }
     },
-    async onCreateOne(req, res)
-    {
-        try
-        {
-            if (!req.body) res.status(401).send("Bad request");
-            console.log(req.body);
-            let result = await clubJoinRequestService.addOne(req.body);
-            res.send({
-                status: true,
-                result: result
-            });
-        } catch (error)
-        {
-            console.log(error);
-            res.send({
-                status: false,
-                result: error
-            });
+
+    // Create //
+    async onCreate(req, res) {
+        try {
+            if (!req.body) {
+                handleResponse(res, 400, "Bad request");
+            }
+
+            let result = await clubJoinRequest_service.createOne(req.body);
+            handleResponse(res, 200, { status: true, result });
+        } catch (error) {
+            handleResponse(res, 500, { status: false, result: "Internal Server Error" });
         }
     },
-    async onUpdateAt(req, res)
-    {
-        try
-        {
-            if (!req.body || !req.body.id || !req.body.clubJoinRequestInfo) res.status(401).send("Bad request");
-            console.log(`${req.body.id} + ${req.body.clubJoinRequestInfo}`);
-            let result = await clubJoinRequestService.updateAt(req.body.id, req.body.clubJoinRequestInfo);
-            console.log(result);
-            res.send({
-                status: true,
-                result: result
-            });
-        } catch (error)
-        {
-            console.log(error);
-            res.send({
-                status: false,
-                result: error
-            });
+
+    // Update //
+    async onUpdate(req, res) {
+        try {
+            if (!req.body?.id || !req.body?.clubInfo) {
+                handleResponse(res, 400, "Bad request");
+            }
+
+            let result = await clubJoinRequest_service.updateOne(req.body.id, req.body.clubJoinRequestInfo);
+            handleResponse(res, 200, { status: true, result });
+        } catch (error) {
+            handleResponse(res, 500, { status: false, result: "Internal Server Error" });
         }
     },
-    async onRemove(req, res)
-    {
-        try
-        {
-            if (!req.body || !req.body.id) res.status(401).send("Bad request");
-            let result = await clubJoinRequestService.removeAt(req.body.id);
-            console.log(result);
-            res.send({
-                status: true,
-                result: result
-            });
-        } catch (error)
-        {
-            console.log(error);
-            res.send({
-                status: false,
-                result: error
-            });
+
+    // Delete //
+    async onDelete(req, res) {
+        try {
+            if (!req.body?.id) {
+                res.status(401).send("Bad request")
+            }
+
+            let result = await clubJoinRequest_service.deleteOne(req.body.id);
+            handleResponse(res, 200, { status: true, result });
+        } catch (error) {
+            handleResponse(res, 500, { status: false, result: "Internal Server Error" });
         }
     }
 }

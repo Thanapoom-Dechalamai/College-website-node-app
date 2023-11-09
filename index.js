@@ -16,12 +16,9 @@ app.use(
 );
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-
-
 app.use(require('./routes'));
 
-const server = app.listen(process.env.SERVER_PORT, () =>
-{
+const server = app.listen(process.env.SERVER_PORT, () => {
     let port = server.address().port;
     console.log(`Server is running at PORT ${port}`);
     const sql = {
