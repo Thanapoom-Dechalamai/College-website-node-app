@@ -86,7 +86,6 @@ const controller = require('../../controllers/teacher.controller');
  *         description: OK
  */
 router.get('/getAll', controller.onGetAll);
-
 /**
  * @swagger
  * /api/v1/teacher/create:
@@ -108,8 +107,7 @@ router.get('/getAll', controller.onGetAll);
  *       500:
  *         description: Internal server error
  */
-router.post('/create', controller.onCreate);
-
+router.post('/create', controller.onCreateOne);
 /**
  * @swagger
  * /api/v1/teacher/update:
@@ -131,11 +129,10 @@ router.post('/create', controller.onCreate);
  *       500:
  *         description: Internal server error
  */
-router.post('/update', controller.onUpdate);
-
+router.post('/update', controller.onUpdateAt);
 /**
  * @swagger
- * /api/v1/teacher/delete:
+ * /api/v1/teacher/remove:
  *   post:
  *     summary: Delete a teacher
  *     tags: [Teacher]
@@ -154,6 +151,6 @@ router.post('/update', controller.onUpdate);
  *       500:
  *         description: Internal server error
  */
-router.post('/delete', controller.onDelete);
+router.post('/remove', controller.onRemove);
 
 module.exports = router;

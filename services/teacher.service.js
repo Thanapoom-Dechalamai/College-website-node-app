@@ -1,88 +1,140 @@
-const db = require("./db.service");
-require("dotenv").config();
-
+const db = require('./db.service');
+require('dotenv').config();
 const methods = {
-    // Get all //
-    getAll() {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const column = ["primary_teacher_ID", "teacher_ID", "teacher_position", "teacher_first_name",
-                    "teacher_last_name", "teacher_nickname", "teacher_first_name_thai", "teacher_last_name_thai", "teacher_nickname_thai",
-                    "teacher_gender", "teacher_major", "teacher_phone", "teacher_line_ID", "teacher_image",
-                    "teacher_email"];
+    getOne(id)
+    {
+        return new Promise(async (resolve, reject) =>
+        {
+            try
+            {
 
-                const result = await db.query(`SELECT ${column.join(", ")} FROM ${process.env.DB_TABLE_TEACHER}`);
+                const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_position', 'teacher_first_name',
+                    'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
+                    'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
+                    'teacher_email'];
+
+                const result = await db.query(`SELECT ${column.join(', ')} FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_ID = ${id}`);
                 resolve(result);
 
-            } catch (error) {
+            } catch (error)
+            {
                 reject(error);
             }
         });
     },
-    // Get one //
-    getOne(id) {
-        const column = ["primary_teacher_ID", "teacher_ID", "teacher_position", "teacher_first_name",
-            "teacher_last_name", "teacher_nickname", "teacher_first_name_thai", "teacher_last_name_thai", "teacher_nickname_thai",
-            "teacher_gender", "teacher_major", "teacher_phone", "teacher_line_ID", "teacher_image",
-            "teacher_email"];
+    getAll()
+    {
+        return new Promise(async (resolve, reject) =>
+        {
+            try
+            {
+                const column = ['primary_teacher_ID', 'teacher_ID', 'teacher_position', 'teacher_first_name',
+                    'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
+                    'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
+                    'teacher_email'];
 
-        const sqlQuery = `SELECT ${column.join(", ")} FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_ID = ?`;
-        return db.query(sqlQuery, [id]);
-    },
+                const result = await db.query(`SELECT ${column.join(', ')} FROM ${process.env.DB_TABLE_TEACHER}`);
+                resolve(result);
 
-    // Create //
-    async createOne(object) {
-        const columns = ["teacher_ID", "teacher_position", "teacher_first_name",
-            "teacher_last_name", "teacher_nickname", "teacher_first_name_thai", "teacher_last_name_thai", "teacher_nickname_thai",
-            "teacher_gender", "teacher_major", "teacher_phone", "teacher_line_ID", "teacher_image",
-            "teacher_email"];
-        const values = columns.map((element) => {
-            if (object[element] == null) {
-                reject("You have a missing field");
+            } catch (error)
+            {
+                reject(error);
             }
-            return object[element];
         });
-
-        const email = object["teacher_email"];
-        const emailIsValid = (await db.query(`SELECT teacher_email FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_email = ?`, [email])).length === 0;
-        if (emailIsValid) {
-            const sqlQuery = `INSERT INTO ${process.env.DB_TABLE_TEACHER} (${columns.join(", ")}) VALUES (${columns.map(() => "?").join(", ")})`;
-            return db.query(sqlQuery, values);
-        } else {
-            reject("The email is already in use");
-        }
     },
+    addOne(object)
+    {
+        return new Promise(async (resolve, reject) =>
+        {
+            try
+            {
+                let columns = ['teacher_ID', 'teacher_position', 'teacher_first_name',
+                    'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
+                    'teacher_gender', 'teacher_major', 'teacher_phone', 'teacher_line_ID', 'teacher_image',
+                    'teacher_email'];
 
-    // Update //
-    updateOne(id, object) {
-        const allowedColumns = ["teacher_ID", "teacher_position", "teacher_first_name",
-            "teacher_last_name", "teacher_nickname", "teacher_first_name_thai", "teacher_last_name_thai", "teacher_nickname_thai",
-            "teacher_gender", "teacher_major", "teacher_phone", "student_line_ID", "teacher_image",
-            "teacher_email"];
-        let columns = [];
-        let values = [];
+                const row = columns.map((element) =>
+                {
+                    if (object[element] == null)
+                    {
+                        reject('You have a missing field');
+                    }
+                    return object[element];
+                });
 
-        for (let column of allowedColumns) {
-            if (column in object) {
-                columns.push(`${column} = ?`);
-                values.push(object[column]);
+                const email = object['teacher_email'];
+                const emailIsValid = (await db.query(`SELECT teacher_email FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_email = ?`, [email])).length === 0;
+
+                if (emailIsValid)
+                {
+                    const result = await db.query(`INSERT INTO ${process.env.DB_TABLE_TEACHER} (${columns.join(", ")}) VALUES (${columns.map(() => "?").join(", ")})`, row);
+                    resolve(result);
+                } else
+                {
+                    reject('That email is already in use');
+                }
+
+            } catch (error)
+            {
+                reject(error);
             }
-        }
 
-        if (columns.length === 0) {
-            return res.sendStatus(204);
-        }
-
-        const updateColumns = columns.join(", ");
-
-        const sqlQuery = `UPDATE ${process.env.DB_TABLE_TEACHER} SET ${updateColumns} WHERE primary_teacher_ID = ?`;
-        return db.query(sqlQuery, [...values, id]);
+        });
     },
+    updateAt(id, object)
+    {
+        return new Promise(async (resolve, reject) =>
+        {
+            try
+            {
+                let allowedcolumns = ['teacher_ID', 'teacher_position', 'teacher_first_name',
+                    'teacher_last_name', 'teacher_nickname', 'teacher_first_name_thai', 'teacher_last_name_thai', 'teacher_nickname_thai',
+                    'teacher_gender', 'teacher_major', 'teacher_phone', 'student_line_ID', 'teacher_image',
+                    'teacher_email']; //all columns that can be updated
 
-    // Delete //
-    deleteOne(id) {
-        const sqlQuery = `DELETE FROM ${process.env.DB_TABLE_TEACHER} WHERE primary_teacher_ID = ?`;
-        return db.query(sqlQuery, [id]);
+                let columns = [];
+                let values = [];
+
+                for (let c of allowedcolumns)
+                {
+                    if (c in object)
+                    {
+                        //check if there is a value for that column in the request body
+                        columns.push(`${c} = ?`);
+                        values.push(object[c]);
+                    }
+                }
+
+                if (columns.length == 0)
+                {
+                    return res.sendStatus(204);
+                }
+
+                const updateColumns = columns.join(', ');
+                const result = await db.query(`UPDATE ${process.env.DB_TABLE_TEACHER} SET ${updateColumns} WHERE primary_teacher_ID = ?`, [...values, id]);
+                resolve(result);
+
+            } catch (error)
+            {
+                reject(error);
+            }
+
+        });
+    },
+    removeAt(id)
+    {
+        return new Promise(async (resolve, reject) =>
+        {
+            try
+            {
+                const result = await db.query(`DELETE FROM ${process.env.DB_TABLE_TEACHER} WHERE primary_teacher_ID = ?`, [id]);
+                resolve(result);
+            } catch (error)
+            {
+                reject(error);
+            }
+
+        });
     }
 };
 

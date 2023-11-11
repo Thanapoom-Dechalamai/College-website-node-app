@@ -1,136 +1,154 @@
-const student_services = require("../services/student.service");
+const studentServices = require('../services/student.service');
 
 const methods = {
-    // Get all //
-    async onGetAll(res) {
-        try {
-            let result = await student_services.getAll();
+    async onGetAll(req, res)
+    {
+        try
+        {
+            let list = await studentServices.getAll();
+            console.log(list);
             res.send({
                 status: true,
-                result: result
+                result: list
             });
-        } catch (error) {
+
+        } catch (error)
+        {
+            console.log(error);
             res.send({
                 status: false,
                 result: error
             });
         }
     },
-    // Get all (Only names) //
-    async onGetInfo(res) {
-        try {
-            let result = await student_services.getInfo();
+    async onGetInfo(req, res)
+    {
+        try
+        {
+            let list = await studentServices.getInfo();
             res.send({
                 status: true,
-                result: result
+                result: list
             });
-        } catch (error) {
+
+        } catch (error)
+        {
+            console.log(error);
             res.send({
                 status: false,
                 result: error
             });
         }
     },
-    // Get by a given amount //
-    async onGetByAmount(req, res) {
-        try {
-            if (!req.query.amount) {
+    async onGetByAmount(req, res)
+    {
+        try
+        {
+            if (!req.query.amount)
+            {
                 return res.status(401).send("Bad request");
             }
 
             const majorIds = [1, 2, 3, 4, 5, 6, 7, 8];
-            const majorKeys = ["AC", "BC", "CG", "FL", "HT", "IT", "MK", "TS"];
-            const result = {};
+            const majorKeys = ['AC', 'BC', 'CG', 'FL', 'HT', 'IT', 'MK', 'TS'];
+            const data = {};
 
-            for (let i = 0; i < majorIds.length; i++) {
+            for (let i = 0; i < majorIds.length; i++)
+            {
                 const majorId = majorIds[i];
                 const majorKey = `major${majorKeys[i]}`;
-                result[majorKey] = await student_services.getByAmount(majorId, req.query.amount);
+                data[majorKey] = await studentServices.getByAmount(majorId, req.query.amount);
             }
+
             res.send({
                 status: true,
-                result: result
+                result: data
             });
-        } catch (error) {
+        } catch (error)
+        {
+            console.log(error);
             res.send({
                 status: false,
                 result: error
             });
         }
-    },
-    // Get students by class. //
-    async onGetByClass(req, res) {
-        try {
-            if (!req.query.level || !req.query.class) {
-                res.status(401).send("Bad request");
-            };
-
-            let result = await student_services.getByClass(req.query.level, req.query.class);
+    }
+    , async onGetByClass(req, res)
+    {
+        try
+        {
+            if (!req.query.level || !req.query.class) res.status(401).send("Bad request");
+            let result = await studentServices.getByClass(req.query.level, req.query.class);
+            console.log(result);
             res.send({
                 status: true,
                 result
             });
-        } catch (error) {
+
+        } catch (error)
+        {
+            console.log(error);
             res.send({
                 status: false,
                 result: error
             });
         }
     },
-
-    // Create //
-    async onCreate(req, res) {
-        try {
-            if (!req.body) {
-                handleResponse(res, 400, "Bad request");
-            }
-
-            let result = await student_services.createOne(req.body);
+    async onCreateOne(req, res)
+    {
+        try
+        {
+            if (!req.body) res.status(401).send("Bad request");
+            console.log(req.body);
+            let result = await studentServices.addOne(req.body);
             res.send({
                 status: true,
                 result: result
             });
-        } catch (error) {
+        } catch (error)
+        {
+            console.log(error);
             res.send({
                 status: false,
                 result: error
             });
         }
     },
-
-    // Update //
-    async onUpdate(req, res) {
-        try {
-            if (!req.body?.id || !req.body?.studentInfo) {
-                res.status(401).send("Bad request")
-            };
-
-            let result = await student_services.updateOne(req.body.id, req.body.studentInfo);
+    async onUpdateAt(req, res)
+    {
+        try
+        {
+            if (!req.body || !req.body.id || !req.body.studentInfo) res.status(401).send("Bad request");
+            console.log(`${req.body.id} + ${req.body.studentInfo}`);
+            let result = await studentServices.updateAt(req.body.id, req.body.studentInfo);
+            console.log(result);
             res.send({
                 status: true,
                 result: result
             });
-        } catch (error) {
+        } catch (error)
+        {
+            console.log(error);
             res.send({
                 status: false,
                 result: error
             });
         }
     },
-
-    // Delete //
-    async onDelete(req, res) {
-        try {
-            if (!req.body?.id) {
-                res.status(401).send("Bad request");
-            };
-
-            let result = await student_services.deleteOne(req.body.id);
+    async onRemove(req, res)
+    {
+        try
+        {
+            if (!req.body || !req.body.id) res.status(401).send("Bad request");
+            let result = await studentServices.removeAt(req.body.id);
+            console.log(result);
             res.send({
                 status: true,
                 result: result
             });
-        } catch (error) {
+        } catch (error)
+        {
+            console.log(error);
             res.send({
                 status: false,
                 result: error
