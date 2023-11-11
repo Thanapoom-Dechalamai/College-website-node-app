@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const controller = require('../../controllers/student.controller');
+const controller = require("../../controllers/student.controller");
 
 /**
  * @swagger
@@ -98,7 +98,8 @@ const controller = require('../../controllers/student.controller');
  *       200:
  *         description: OK
  */
-router.get('/getAll', controller.onGetAll);
+router.get("/getAll", controller.onGetAll);
+
 /**
  * @swagger
  * /api/v1/student/getInfo:
@@ -109,7 +110,8 @@ router.get('/getAll', controller.onGetAll);
  *       200:
  *         description: OK
  */
-router.get('/getInfo', controller.onGetInfo);
+router.get("/getInfo", controller.onGetInfo);
+
 /**
  * @swagger
  * /api/v1/student/getByAmount?amount={amount}:
@@ -131,7 +133,8 @@ router.get('/getInfo', controller.onGetInfo);
  *       500:
  *         description: Internal server error
  */
-router.get('/getByAmount', controller.onGetByAmount);
+router.get("/getByAmount", controller.onGetByAmount);
+
 /**
  * @swagger
  * /api/v1/student/getByClass?level={level}&class={class}:
@@ -159,7 +162,8 @@ router.get('/getByAmount', controller.onGetByAmount);
  *       500:
  *         description: Internal server error
  */
-router.get('/getByClass', controller.onGetByClass);
+router.get("/getByClass", controller.onGetByClass);
+
 /**
  * @swagger
  * /api/v1/student/create:
@@ -172,7 +176,7 @@ router.get('/getByClass', controller.onGetByClass);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateStudentInput'
+ *             $ref: "#/components/schemas/CreateStudentInput"
  *     responses:
  *       200:
  *         description: Student created successfully
@@ -181,7 +185,8 @@ router.get('/getByClass', controller.onGetByClass);
  *       500:
  *         description: Internal server error
  */
-router.post('/create', controller.onCreateOne);
+router.post("/create", controller.onCreate);
+
 /**
  * @swagger
  * /api/v1/student/update:
@@ -194,7 +199,7 @@ router.post('/create', controller.onCreateOne);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateStudentInput'
+ *             $ref: "#/components/schemas/UpdateStudentInput"
  *     responses:
  *       200:
  *         description: Student created successfully
@@ -203,10 +208,11 @@ router.post('/create', controller.onCreateOne);
  *       500:
  *         description: Internal server error
  */
-router.post('/update', controller.onUpdateAt);
+router.post("/update", controller.onUpdate);
+
 /**
  * @swagger
- * /api/v1/student/remove:
+ * /api/v1/student/delete:
  *   post:
  *     summary: Delete a student
  *     tags: [Student]
@@ -216,7 +222,7 @@ router.post('/update', controller.onUpdateAt);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/IDInput'
+ *             $ref: "#/components/schemas/IDInput"
  *     responses:
  *       200:
  *         description: Student deleted successfully
@@ -225,6 +231,6 @@ router.post('/update', controller.onUpdateAt);
  *       500:
  *         description: Internal server error
  */
-router.post('/remove', controller.onRemove);
+router.post("/delete", controller.onDelete);
 
 module.exports = router;

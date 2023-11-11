@@ -1,9 +1,8 @@
 const club_service = require("../../services/club/club.service");
-const { handleResponse } = require("../../functions/handleResponse.function");
 
 const method = {
     // Get all //
-    async onGetAll(req, res) {
+    async onGetAll(res) {
         try {
             let result = await club_service.getAll();
             res.send({
