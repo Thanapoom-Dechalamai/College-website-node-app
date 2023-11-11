@@ -22,7 +22,7 @@ const method = {
     async onCreate(req, res) {
         try {
             if (!req.body) {
-                handleResponse(res, 400, "Bad request");
+                return handleResponse(res, 400, "Bad request");
             }
 
             let result = await clubMembership_service.createOne(req.body);
@@ -42,7 +42,7 @@ const method = {
     async onUpdate(req, res) {
         try {
             if (!req.body?.id || !req.body?.clubMembershipInfo) {
-                handleResponse(res, 400, "Bad request");
+                return handleResponse(res, 400, "Bad request");
             }
 
             let result = await clubMembership_service.updateOne(req.body.id, req.body.clubMembershipInfo);
@@ -62,7 +62,7 @@ const method = {
     async onDelete(req, res) {
         try {
             if (!req.body?.id) {
-                res.status(401).send("Bad request")
+                return handleResponse(res, 400, "Bad request");
             }
 
             let result = await clubMembership_service.removeAt(req.body.id);

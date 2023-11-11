@@ -22,7 +22,7 @@ const method = {
     async onCreate(req, res) {
         try {
             if (!req.body) {
-                handleResponse(res, 400, "Bad request");
+                return handleResponse(res, 400, "Bad request");
             }
 
             let result = await clubManager_service.createOne(req.body);
@@ -42,7 +42,7 @@ const method = {
     async onUpdate(req, res) {
         try {
             if (!req.body?.id || !req.body?.clubManagerInfo) {
-                handleResponse(res, 400, "Bad request");
+                return handleResponse(res, 400, "Bad request");
             }
 
             let result = await clubManager_service.updateOne(req.body.id, req.body.clubManagerInfo);
@@ -62,7 +62,7 @@ const method = {
     async onDelete(req, res) {
         try {
             if (!req.body?.id) {
-                handleResponse(res, 400, "Bad request");
+                return handleResponse(res, 400, "Bad request");
             }
 
             let result = await clubManager_service.deleteOne(req.body.id);
