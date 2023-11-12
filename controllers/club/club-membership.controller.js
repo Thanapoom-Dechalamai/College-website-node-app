@@ -65,7 +65,7 @@ const method = {
                 return handleResponse(res, 400, "Bad request");
             }
 
-            let result = await clubMembership_service.removeAt(req.body.id);
+            let result = await clubMembership_service.deleteOne(req.body.id);
             res.send({
                 status: true,
                 result: result

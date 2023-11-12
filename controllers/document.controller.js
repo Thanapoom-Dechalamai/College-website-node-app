@@ -1,10 +1,11 @@
 
 const documentService = require('../services/document.service');
+
+// THIS TABLE HAS BEEN REMOVED FROM THE DATABASE //
+
 const method = {
-    async onGetAll(req, res)
-    {
-        try
-        {
+    async onGetAll(req, res) {
+        try {
             let list = await documentService.getAll();
             console.log(list);
             res.send({
@@ -12,8 +13,7 @@ const method = {
                 result: list
             });
 
-        } catch (error)
-        {
+        } catch (error) {
             console.log(error);
             res.send({
                 status: false,
@@ -21,12 +21,9 @@ const method = {
             });
         }
     },
-    async onGetByID(req, res)
-    {
-        try
-        {
-            if (!req.body || !req.body.id)
-            {
+    async onGetByID(req, res) {
+        try {
+            if (!req.body || !req.body.id) {
                 res.status(401).send("Bad request");
                 return;
             }
@@ -37,8 +34,7 @@ const method = {
                 result: list
             });
 
-        } catch (error)
-        {
+        } catch (error) {
             console.log(error);
             res.send({
                 status: false,
@@ -46,10 +42,8 @@ const method = {
             });
         }
     },
-    async onCreateOne(req, res)
-    {
-        try
-        {
+    async onCreateOne(req, res) {
+        try {
             if (!req.body) res.status(401).send("Bad request");
             console.log(req.body);
             let result = await documentService.addOne(req.body);
@@ -57,8 +51,7 @@ const method = {
                 status: true,
                 result: result
             });
-        } catch (error)
-        {
+        } catch (error) {
             console.log(error);
             res.send({
                 status: false,
@@ -66,10 +59,8 @@ const method = {
             });
         }
     },
-    async onUpdateAt(req, res)
-    {
-        try
-        {
+    async onUpdateAt(req, res) {
+        try {
             if (!req.body || !req.body.id || !req.body.documentInfo) res.status(401).send("Bad request");
             console.log(`${req.body.id} + ${req.body.documentInfo}`);
             let result = await documentService.updateAt(req.body.id, req.body.documentInfo);
@@ -78,8 +69,7 @@ const method = {
                 status: true,
                 result: result
             });
-        } catch (error)
-        {
+        } catch (error) {
             console.log(error);
             res.send({
                 status: false,
@@ -87,10 +77,8 @@ const method = {
             });
         }
     },
-    async onRemove(req, res)
-    {
-        try
-        {
+    async onRemove(req, res) {
+        try {
             if (!req.body || !req.body.id) res.status(401).send("Bad request");
             let result = await documentService.removeAt(req.body.id);
             console.log(result);
@@ -98,8 +86,7 @@ const method = {
                 status: true,
                 result: result
             });
-        } catch (error)
-        {
+        } catch (error) {
             console.log(error);
             res.send({
                 status: false,

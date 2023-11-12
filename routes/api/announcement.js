@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const controller = require('../../controllers/announcement.controller');
+
 /**
  * @swagger
  * components:
@@ -50,6 +51,7 @@ const controller = require('../../controllers/announcement.controller');
  *         description: OK
  */
 router.get('/getAll', controller.onGetAll);
+
 /**
  * @swagger
  * /api/v1/announcement/getOne:
@@ -72,6 +74,7 @@ router.get('/getAll', controller.onGetAll);
  *         description: Internal server error
  */
 router.post('/getOne', controller.onGetByID);
+
 /**
  * @swagger
  * /api/v1/announcement/create:
@@ -93,7 +96,8 @@ router.post('/getOne', controller.onGetByID);
  *       500:
  *         description: Internal server error
  */
-router.post('/create', controller.onCreateOne);
+router.post('/create', controller.onCreate);
+
 /**
  * @swagger
  * /api/v1/announcement/update:
@@ -115,10 +119,11 @@ router.post('/create', controller.onCreateOne);
  *       500:
  *         description: Internal server error
  */
-router.post('/update', controller.onUpdateAt);
+router.post('/update', controller.onUpdate);
+
 /**
  * @swagger
- * /api/v1/announcement/remove:
+ * /api/v1/announcement/delete:
  *   post:
  *     summary: Delete a announcement
  *     tags: [Announcement]
@@ -137,6 +142,6 @@ router.post('/update', controller.onUpdateAt);
  *       500:
  *         description: Internal server error
  */
-router.post('/remove', controller.onRemove);
+router.post('/delete', controller.onDelete);
 
 module.exports = router;

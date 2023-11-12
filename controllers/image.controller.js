@@ -1,11 +1,8 @@
 const imageService = require("../services/image.service");
 
 const methods = {
-    async onGetImage(req, res)
-    {
-        console.log(req.user);
-        if (!req.user?.user_role || !req.user?.user_role_ID)
-        {
+    async onGetImage(req, res) {
+        if (!req.user?.user_role || !req.user?.user_role_ID) {
             return res.send({
                 status: false,
                 result: "The request headers doesn't contain authorization!",
@@ -13,9 +10,7 @@ const methods = {
         }
 
         const result = await imageService.getImage(req.user.user_role, req.user.user_role_ID);
-        console.log(result);
-        if (req.user.user_role == 1)
-        {
+        if (req.user.user_role == 1) {
             res.send({
                 status: true,
                 result: {
@@ -23,8 +18,7 @@ const methods = {
                 }
             });
 
-        } else
-        {
+        } else {
             res.send({
                 status: true,
                 result: {

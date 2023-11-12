@@ -2,10 +2,8 @@ const jwt = require("jsonwebtoken");
 const config = require("../configs/app");
 
 const methods = {
-    async requireAuth(req, res, next)
-    {
-        try
-        {
+    async requireAuth(req, res, next) {
+        try {
             if (!req.headers.authorization) return res.status(401).json({
                 message: 'Unauthorization'
             });
@@ -13,8 +11,7 @@ const methods = {
             const user = jwt.verify(token, config.secret);
             req.user = user;
             next();
-        } catch (error)
-        {
+        } catch (error) {
             return res.status(400).json({
                 message: error.message
             });

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const controller = require('../../controllers/auth.controller');
 const { requireAuth } = require("../../helpers/auth.helper");
+
 /**
  * @swagger
  * components:
@@ -41,6 +42,7 @@ const { requireAuth } = require("../../helpers/auth.helper");
  *         description: Internal server error
  */
 router.post('/login', controller.onLogin);
+
 /**
  * @swagger
  * /api/v1/auth/changePassword:

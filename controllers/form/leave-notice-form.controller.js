@@ -1,16 +1,37 @@
-const teacherServices = require('../services/teacher.service');
 
-const methods = {
+const leaveNoticeService = require('../../services/form/leave-notice-form.service');
+
+const method = {
+    // Get all //
     async onGetAll(req, res) {
         try {
-            let list = await teacherServices.getAll();
+            let list = await leaveNoticeService.getAll();
             res.send({
                 status: true,
                 result: list
             });
         } catch (error) {
             res.send({
+                status: false,
+                result: error
+            });
+        }
+    },
+    // Get by ID //
+    async onGetByID(req, res) {
+        try {
+            if (!req.body?.id) {
+                return res.status(401).send("Bad request");
+            }
+
+            let list = await leaveNoticeService.getOne(req.body.id);
+            res.send({
                 status: true,
+                result: list
+            });
+        } catch (error) {
+            res.send({
+                status: false,
                 result: error
             });
         }
@@ -23,7 +44,7 @@ const methods = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await teacherServices.createOne(req.body);
+            let result = await leaveNoticeService.createOne(req.body);
             res.send({
                 status: true,
                 result: result
@@ -39,11 +60,11 @@ const methods = {
     // Update //
     async onUpdate(req, res) {
         try {
-            if (!req.body?.id || !req.body?.teacherInfo) {
+            if (!req.body?.id || !req.body?.leaveNoticeInfo) {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await teacherServices.updateOne(req.body.id, req.body.teacherInfo);
+            let result = await leaveNoticeService.updateOne(req.body.id, req.body.leaveNoticeInfo);
             res.send({
                 status: true,
                 result: result
@@ -60,10 +81,10 @@ const methods = {
     async onDelete(req, res) {
         try {
             if (!req.body?.id) {
-                res.status(401).send("Bad request");
+                return res.status(401).send("Bad request");
             }
 
-            let result = await teacherServices.deleteOne(req.body.id);
+            let result = await leaveNoticeService.deleteOne(req.body.id);
             res.send({
                 status: true,
                 result: result
@@ -75,6 +96,7 @@ const methods = {
             });
         }
     }
+
 };
 
-module.exports = { ...methods };
+module.exports = { ...method };

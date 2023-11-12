@@ -2,10 +2,8 @@ const studentServices = require('../services/student.service');
 const teacherServices = require('../services/teacher.service');
 
 const methods = {
-    async onGetOne(req, res)
-    {
-        if (!req.user?.user_role || !req.user?.user_role_ID)
-        {
+    async onGetOne(req, res) {
+        if (!req.user?.user_role || !req.user?.user_role_ID) {
             return res.send({
                 status: false,
                 result: "The request headers don't contain authorization!",
@@ -13,8 +11,7 @@ const methods = {
         }
 
         let result;
-        switch (req.user.user_role)
-        {
+        switch (req.user.user_role) {
             case 1:
                 result = await studentServices.getOne(req.user.user_role_ID);
                 break;
@@ -23,8 +20,7 @@ const methods = {
                 break;
         }
 
-        if (!result || result.length === 0)
-        {
+        if (!result || result.length === 0) {
             return res.send({
                 status: false,
                 result: "Profile not found!",

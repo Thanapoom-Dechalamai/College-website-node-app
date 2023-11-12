@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const controller = require('../../controllers/request-form.controller');
+const controller = require("../../../controllers/form/request-form.controller");
+
 /**
  * @swagger
  * components:
@@ -52,7 +53,8 @@ const controller = require('../../controllers/request-form.controller');
  *       200:
  *         description: OK
  */
-router.get('/getAll', controller.onGetAll);
+router.get("/getAll", controller.onGetAll);
+
 /**
  * @swagger
  * /api/v1/forms/requestForm/getByID:
@@ -65,7 +67,7 @@ router.get('/getAll', controller.onGetAll);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/IDInput'
+ *             $ref: "#/components/schemas/IDInput"
  *     responses:
  *       200:
  *         description: Successfully
@@ -74,7 +76,8 @@ router.get('/getAll', controller.onGetAll);
  *       500:
  *         description: Internal server error
  */
-router.post('/getByID', controller.onGetByID);
+router.post("/getByID", controller.onGetByID);
+
 /**
  * @swagger
  * /api/v1/forms/requestForm/create:
@@ -87,7 +90,7 @@ router.post('/getByID', controller.onGetByID);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateRequestFormInput'
+ *             $ref: "#/components/schemas/CreateRequestFormInput"
  *     responses:
  *       200:
  *         description: Request form created successfully
@@ -96,7 +99,8 @@ router.post('/getByID', controller.onGetByID);
  *       500:
  *         description: Internal server error
  */
-router.post('/create', controller.onCreateOne);
+router.post("/create", controller.onCreate);
+
 /**
  * @swagger
  * /api/v1/forms/requestForm/update:
@@ -109,7 +113,7 @@ router.post('/create', controller.onCreateOne);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateRequestFormInput'
+ *             $ref: "#/components/schemas/UpdateRequestFormInput"
  *     responses:
  *       200:
  *         description: Request form updated successfully
@@ -118,10 +122,11 @@ router.post('/create', controller.onCreateOne);
  *       500:
  *         description: Internal server error
  */
-router.post('/update', controller.onUpdateAt);
+router.post("/update", controller.onUpdate);
+
 /**
  * @swagger
- * /api/v1/forms/requestForm/remove:
+ * /api/v1/forms/requestForm/delete:
  *   post:
  *     summary: Delete a request form
  *     tags: [RequestForm]
@@ -131,7 +136,7 @@ router.post('/update', controller.onUpdateAt);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/IDInput'
+ *             $ref: "#/components/schemas/IDInput"
  *     responses:
  *       200:
  *         description: Request form deleted successfully
@@ -140,6 +145,6 @@ router.post('/update', controller.onUpdateAt);
  *       500:
  *         description: Internal server error
  */
-router.post('/remove', controller.onRemove);
+router.post("/delete", controller.onDelete);
 
 module.exports = router;

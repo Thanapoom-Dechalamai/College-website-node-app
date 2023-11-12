@@ -2,105 +2,87 @@ const db = require('./db.service');
 require('dotenv').config();
 
 const methods = {
-    getAll()
-    {
-        return new Promise((resolve, reject) =>
-        {
+    // Get all //
+    getAll() {
+        return new Promise((resolve, reject) => {
             const query = `SELECT * FROM ${process.env.DB_TABLE_ANNOUNCEMENT}`;
             db.query(query)
-                .then(result =>
-                {
+                .then(result => {
                     resolve(result);
                 })
-                .catch(error =>
-                {
+                .catch(error => {
                     reject(error);
                 });
         });
     },
-    getOne(id)
-    {
-        return new Promise((resolve, reject) =>
-        {
+    // Get one //
+    getOne(id) {
+        return new Promise((resolve, reject) => {
             const query = `SELECT * FROM ${process.env.DB_TABLE_ANNOUNCEMENT} WHERE announcement_ID = ?`;
             db.query(query, [id])
-                .then(result =>
-                {
+                .then(result => {
                     resolve(result);
                 })
-                .catch(error =>
-                {
+                .catch(error => {
                     reject(error);
                 });
         });
     },
-    addOne(object)
-    {
-        return new Promise(async (resolve, reject) =>
-        {
-            try
-            {
+
+    // Create //
+    createOne(object) {
+        return new Promise(async (resolve, reject) => {
+            try {
                 const columns = ['announcement_status', 'announcement_title', 'announcement_description', 'announcement_image', 'announcement_create_datetime'];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill('?').join(', ');
                 const sql = `INSERT INTO ${process.env.DB_TABLE_ANNOUNCEMENT} (${columns.join(", ")}) VALUES (${placeholders})`;
-                console.log(values);
                 const results = await db.query(sql, values);
                 resolve(results);
-            } catch (error)
-            {
+            } catch (error) {
                 reject(error);
             }
         });
     },
 
-    updateAt(id, object)
-    {
-        return new Promise((resolve, reject) =>
-        {
-            const allowedcolumns = ['announcement_status', 'announcement_title', 'announcement_description', 'announcement_image', 'announcement_create_datetime'];
+    // Update //
+    updateOne(id, object) {
+        return new Promise((resolve, reject) => {
+            const allowedColumns = ['announcement_status', 'announcement_title', 'announcement_description', 'announcement_image', 'announcement_create_datetime'];
             const columns = [];
             const values = [];
 
-            for (const c of allowedcolumns)
-            {
-                if (c in object)
-                {
-                    columns.push(`${c} = ?`);
-                    values.push(object[c]);
+            for (const column of allowedColumns) {
+                if (column in object) {
+                    columns.push(`${column} = ?`);
+                    values.push(object[column]);
                 }
             }
 
-            if (columns.length === 0)
-            {
+            if (columns.length === 0) {
                 return reject('No columns to update.');
             }
 
             const query = `UPDATE ${process.env.DB_TABLE_ANNOUNCEMENT} SET ${columns.join(", ")} WHERE announcement_ID = ?`;
             db.query(query, [...values, id])
-                .then(result =>
-                {
+                .then(result => {
                     resolve(result);
                 })
-                .catch(error =>
-                {
+                .catch(error => {
                     reject(error);
                 });
         });
     },
 
-    removeAt(id)
-    {
-        return new Promise((resolve, reject) =>
-        {
+    // Delete //
+    deleteOne(id) {
+        return new Promise((resolve, reject) => {
             const query = `DELETE FROM ${process.env.DB_TABLE_ANNOUNCEMENT} WHERE announcement_ID = ?`;
             db.query(query, [id])
-                .then(result =>
-                {
+                .then(result => {
                     resolve(result);
                 })
-                .catch(error =>
-                {
+                .catch(error => {
                     reject(error);
                 });
         });

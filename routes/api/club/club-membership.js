@@ -88,7 +88,7 @@ router.post("/update", controller.onUpdate);
 
 /**
  * @swagger
- * /api/v1/clubMembership/remove:
+ * /api/v1/clubMembership/delete:
  *   post:
  *     summary: Delete a club
  *     tags: [ClubMembership]
