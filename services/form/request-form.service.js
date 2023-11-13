@@ -1,3 +1,4 @@
+const dayjs = require("dayjs");
 const db = require("../db.service");
 require("dotenv").config();
 
@@ -31,9 +32,12 @@ const methods = {
 
     // Create //
     createOne(object) {
+        object.request_form_create_datetime = dayjs().toISOString();
+
         return new Promise(async (resolve, reject) => {
             try {
-                const columns = ["request_form_student_ID", "request_form_student_title", "request_form_student_description", "request_form_create_datetime", "request_form_attached_file"];
+
+                const columns = ["request_form_student_ID", "request_form_student_title", "request_form_student_description", "request_form_attached_file"];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill("?").join(", ");
                 const sql = `INSERT INTO ${process.env.DB_TABLE_REQUEST_FORM} (${columns.join(", ")}) VALUES (${placeholders})`;

@@ -1,3 +1,4 @@
+const dayjs = require("dayjs");
 const db = require("../db.service");
 require("dotenv").config();
 
@@ -29,9 +30,11 @@ const methods = {
 
     // Create //
     createOne(object) {
+        object.leave_notice_create_datetime = dayjs().toISOString();
+
         return new Promise(async (resolve, reject) => {
             try {
-                const columns = ["leave_notice_student_ID", "leave_notice_description", "leave_notice_choice", "leave_notice_start_datetime", "leave_notice_end_datetime", "leave_notice_create_datetime", "leave_notice_attached_file"];
+                const columns = ["leave_notice_student_ID", "leave_notice_description", "leave_notice_choice", "leave_notice_start_datetime", "leave_notice_end_datetime", "leave_notice_attached_file"];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill("?").join(", ");
                 const sql = `INSERT INTO ${process.env.DB_TABLE_LEAVE_NOTICE} (${columns.join(", ")}) VALUES (${placeholders})`;
