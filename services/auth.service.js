@@ -1,28 +1,28 @@
-const db = require('./db.service');
-const bcrypt = require('bcryptjs');
+const db = require("./db.service");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require('../configs/app');
-require('dotenv').config();
+const config = require("../configs/app");
+require("dotenv").config();
 
 const methods = {
     // Login //
     login(email, password) {
         return new Promise((resolve, reject) => {
-            const columns = ['user_role', 'user_role_ID', 'user_password'];
-            const query = `SELECT ${columns.join(', ')} FROM ${process.env.DB_TABLE_USER} WHERE user_email = ?`;
+            const columns = ["user_role", "user_role_ID", "user_password"];
+            const query = `SELECT ${columns.join(", ")} FROM ${process.env.DB_TABLE_USER} WHERE user_email = ?`;
 
             db.query(query, [email])
                 .then(result => {
                     if (result?.length === 1) {
                         const passwordIsValid = bcrypt.compareSync(password, result[0].user_password);
                         if (!passwordIsValid) {
-                            reject('Invalid Password!');
+                            reject("Invalid Password!");
                         }
                         const token = jwt.sign(
                             { user_role: result[0].user_role, user_role_ID: result[0].user_role_ID },
                             config.secret,
                             {
-                                algorithm: 'HS256',
+                                algorithm: "HS256",
                                 allowInsecureKeySizes: true,
                                 expiresIn: 86400, // 24 hours
                             }

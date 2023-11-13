@@ -1,4 +1,4 @@
-const db = require('./db.service');
+const db = require("./db.service");
 
 const methods = {
     // Get all //

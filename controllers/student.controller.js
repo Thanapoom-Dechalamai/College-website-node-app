@@ -1,10 +1,10 @@
-const studentServices = require("../services/student.service");
+const student_service = require("../services/student.service");
 
 const methods = {
     // Get all //
     async onGetAll(req, res) {
         try {
-            let list = await studentServices.getAll();
+            let list = await student_service.getAll();
             res.send({
                 status: true,
                 result: list
@@ -20,7 +20,7 @@ const methods = {
     // Get info //
     async onGetInfo(req, res) {
         try {
-            let list = await studentServices.getInfo();
+            let list = await student_service.getInfo();
             res.send({
                 status: true,
                 result: list
@@ -46,7 +46,7 @@ const methods = {
             for (let i = 0; i < majorIds.length; i++) {
                 const majorId = majorIds[i];
                 const majorKey = `major${majorKeys[i]}`;
-                data[majorKey] = await studentServices.getByAmount(majorId, req.query.amount);
+                data[majorKey] = await student_service.getByAmount(majorId, req.query.amount);
             }
 
             res.send({
@@ -67,7 +67,7 @@ const methods = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await studentServices.getByClass(req.query.level, req.query.class);
+            let result = await student_service.getByClass(req.query.level, req.query.class);
             res.send({
                 status: true,
                 result
@@ -87,7 +87,7 @@ const methods = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await studentServices.createOne(req.body);
+            let result = await student_service.createOne(req.body);
             res.send({
                 status: true,
                 result: result
@@ -107,7 +107,7 @@ const methods = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await studentServices.updateOne(req.body.id, req.body.studentInfo);
+            let result = await student_service.updateOne(req.body.id, req.body.studentInfo);
             res.send({
                 status: true,
                 result: result
@@ -127,7 +127,7 @@ const methods = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await studentServices.deleteOne(req.body.id);
+            let result = await student_service.deleteOne(req.body.id);
             res.send({
                 status: true,
                 result: result

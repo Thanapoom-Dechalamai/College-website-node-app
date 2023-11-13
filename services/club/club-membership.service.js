@@ -32,7 +32,7 @@ const methods = {
         }
 
         if (columns.length === 0) {
-            return Promise.reject(new Error('No columns to update.'));
+            return Promise.reject(new Error("No columns to update."));
         }
 
         const query = `UPDATE ${process.env.DB_TABLE_CLUB_MEMBERSHIP} SET ${columns.join(", ")} WHERE club_membership_ID = ?`;

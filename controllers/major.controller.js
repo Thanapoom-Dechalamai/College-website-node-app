@@ -1,10 +1,9 @@
-
-const majorServices = require('../services/major.service');
+const major_service = require("../services/major.service");
 
 const method = {
     async onGetAll(req, res) {
         try {
-            let list = await majorServices.getAll();
+            let list = await major_service.getAll();
             res.send({
                 status: true,
                 result: list

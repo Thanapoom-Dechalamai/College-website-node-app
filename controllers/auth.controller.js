@@ -1,11 +1,10 @@
-
-const authService = require('../services/auth.service');
+const auth_service = require("../services/auth.service");
 
 const method = {
     async onLogin(req, res) {
         try {
             if (!req.body?.email || !req.body?.password) res.status(401).send("Bad request");
-            let token = await authService.login(req.body.email, req.body.password);
+            let token = await auth_service.login(req.body.email, req.body.password);
             res.send({
                 status: true,
                 result: {
@@ -32,7 +31,7 @@ const method = {
                 });
             }
 
-            let result = await authService.changePassword(req.user.user_role_ID, req.body.password);
+            let result = await auth_service.changePassword(req.user.user_role_ID, req.body.password);
             res.send({
                 status: true,
                 result

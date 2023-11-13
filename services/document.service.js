@@ -1,5 +1,5 @@
-const db = require('./db.service');
-require('dotenv').config();
+const db = require("./db.service");
+require("dotenv").config();
 
 // THIS TABLE HAS BEEN REMOVED FROM THE DATABASE //
 
@@ -31,9 +31,9 @@ const methods = {
     addOne(object) {
         return new Promise(async (resolve, reject) => {
             try {
-                const columns = ['document_name', 'document_extension', 'document_location', 'document_status'];
+                const columns = ["document_name", "document_extension", "document_location", "document_status"];
                 const values = columns.map(column => object[column]);
-                const placeholders = new Array(values.length).fill('?').join(', ');
+                const placeholders = new Array(values.length).fill("?").join(", ");
                 const sql = `INSERT INTO ${process.env.DB_TABLE_DOCUMENT} (${columns.join(", ")}) VALUES (${placeholders})`;
                 const results = await db.query(sql, values);
                 resolve(results);
@@ -45,7 +45,7 @@ const methods = {
 
     updateAt(id, object) {
         return new Promise((resolve, reject) => {
-            const allowedcolumns = ['document_name', 'document_extension', 'document_location', 'document_status'];
+            const allowedcolumns = ["document_name", "document_extension", "document_location", "document_status"];
             const columns = [];
             const values = [];
 
@@ -57,7 +57,7 @@ const methods = {
             }
 
             if (columns.length === 0) {
-                return reject('No columns to update.');
+                return reject("No columns to update.");
             }
 
             const query = `UPDATE ${process.env.DB_TABLE_DOCUMENT} SET ${columns.join(", ")} WHERE document_ID = ?`;

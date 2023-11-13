@@ -1,4 +1,4 @@
-const clubMembership_service = require('../../services/club/club-membership.service');
+const clubMembership_service = require("../../services/club/club-membership.service");
 const { handleResponse } = require("../../functions/handleResponse.function");
 
 const method = {

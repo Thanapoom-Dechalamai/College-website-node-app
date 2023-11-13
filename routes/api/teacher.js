@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const controller = require('../../controllers/teacher.controller');
+const controller = require("../../controllers/teacher.controller");
 
 /**
  * @swagger
@@ -85,7 +85,7 @@ const controller = require('../../controllers/teacher.controller');
  *       200:
  *         description: OK
  */
-router.get('/getAll', controller.onGetAll);
+router.get("/getAll", controller.onGetAll);
 
 /**
  * @swagger
@@ -99,7 +99,7 @@ router.get('/getAll', controller.onGetAll);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateTeacherInput'
+ *             $ref: "#/components/schemas/CreateTeacherInput"
  *     responses:
  *       200:
  *         description: Teacher created successfully
@@ -108,7 +108,7 @@ router.get('/getAll', controller.onGetAll);
  *       500:
  *         description: Internal server error
  */
-router.post('/create', controller.onCreate);
+router.post("/create", controller.onCreate);
 
 /**
  * @swagger
@@ -122,7 +122,7 @@ router.post('/create', controller.onCreate);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateTeacherInput'
+ *             $ref: "#/components/schemas/UpdateTeacherInput"
  *     responses:
  *       200:
  *         description: Teacher created successfully
@@ -131,7 +131,7 @@ router.post('/create', controller.onCreate);
  *       500:
  *         description: Internal server error
  */
-router.post('/update', controller.onUpdate);
+router.post("/update", controller.onUpdate);
 
 /**
  * @swagger
@@ -145,7 +145,7 @@ router.post('/update', controller.onUpdate);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/IDInput'
+ *             $ref: "#/components/schemas/IDInput"
  *     responses:
  *       200:
  *         description: Teacher deleted successfully
@@ -154,6 +154,6 @@ router.post('/update', controller.onUpdate);
  *       500:
  *         description: Internal server error
  */
-router.post('/delete', controller.onDelete);
+router.post("/delete", controller.onDelete);
 
 module.exports = router;

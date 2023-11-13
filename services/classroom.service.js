@@ -1,5 +1,5 @@
-const db = require('./db.service');
-require('dotenv').config();
+const db = require("./db.service");
+require("dotenv").config();
 
 const methods = {
     // Get all //
@@ -45,7 +45,7 @@ const methods = {
     // Update //
     updateOne(id, object) {
         return new Promise((resolve, reject) => {
-            const allowedColumns = ['classroom_major', 'classroom_level', 'classroom_class', 'classroom_homeroom_teacher'];
+            const allowedColumns = ["classroom_major", "classroom_level", "classroom_class", "classroom_homeroom_teacher"];
             const columns = [];
             const values = [];
 
@@ -57,7 +57,7 @@ const methods = {
             }
 
             if (columns.length === 0) {
-                return reject('No columns to update.');
+                return reject("No columns to update.");
             }
 
             const query = `UPDATE ${process.env.DB_TABLE_CLASSROOM} SET ${columns.join(", ")} WHERE classroom_ID = ?`;

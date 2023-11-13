@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const cors = require('cors');
-const fileUpload = require('express-fileupload');
-const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./configs/swagger');
+const cors = require("cors");
+const fileUpload = require("express-fileupload");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./configs/swagger");
 
 
 require("dotenv").config();
@@ -14,9 +14,9 @@ app.use(
         origin: ["https://blauens.com", "https://sbacprofile.blauens.com", "http://blauenthepeople.com", "http://localhost:5173", "http://localhost:5174"]
     })
 );
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use(require('./routes'));
+app.use(require("./routes"));
 
 const server = app.listen(process.env.SERVER_PORT, () => {
     let port = server.address().port;

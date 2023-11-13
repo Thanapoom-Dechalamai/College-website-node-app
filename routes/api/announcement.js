@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const controller = require('../../controllers/announcement.controller');
+const controller = require("../../controllers/announcement.controller");
 
 /**
  * @swagger
@@ -50,7 +50,7 @@ const controller = require('../../controllers/announcement.controller');
  *       200:
  *         description: OK
  */
-router.get('/getAll', controller.onGetAll);
+router.get("/getAll", controller.onGetAll);
 
 /**
  * @swagger
@@ -64,7 +64,7 @@ router.get('/getAll', controller.onGetAll);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/IDInput'
+ *             $ref: "#/components/schemas/IDInput"
  *     responses:
  *       200:
  *         description: Successfully
@@ -73,7 +73,7 @@ router.get('/getAll', controller.onGetAll);
  *       500:
  *         description: Internal server error
  */
-router.post('/getOne', controller.onGetByID);
+router.post("/getOne", controller.onGetByID);
 
 /**
  * @swagger
@@ -87,7 +87,7 @@ router.post('/getOne', controller.onGetByID);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateAnnouncementInput'
+ *             $ref: "#/components/schemas/CreateAnnouncementInput"
  *     responses:
  *       200:
  *         description: Announcement created successfully
@@ -96,7 +96,7 @@ router.post('/getOne', controller.onGetByID);
  *       500:
  *         description: Internal server error
  */
-router.post('/create', controller.onCreate);
+router.post("/create", controller.onCreate);
 
 /**
  * @swagger
@@ -110,7 +110,7 @@ router.post('/create', controller.onCreate);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateAnnouncementInput'
+ *             $ref: "#/components/schemas/UpdateAnnouncementInput"
  *     responses:
  *       200:
  *         description: Announcement updated successfully
@@ -119,7 +119,7 @@ router.post('/create', controller.onCreate);
  *       500:
  *         description: Internal server error
  */
-router.post('/update', controller.onUpdate);
+router.post("/update", controller.onUpdate);
 
 /**
  * @swagger
@@ -133,7 +133,7 @@ router.post('/update', controller.onUpdate);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/IDInput'
+ *             $ref: "#/components/schemas/IDInput"
  *     responses:
  *       200:
  *         description: Announcement deleted successfully
@@ -142,6 +142,6 @@ router.post('/update', controller.onUpdate);
  *       500:
  *         description: Internal server error
  */
-router.post('/delete', controller.onDelete);
+router.post("/delete", controller.onDelete);
 
 module.exports = router;

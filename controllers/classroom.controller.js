@@ -1,11 +1,10 @@
-
-const classroomService = require('../services/classroom.service');
+const classroom_service = require("../services/classroom.service");
 
 const method = {
     // Get all //
     async onGetAll(req, res) {
         try {
-            let list = await classroomService.getAll();
+            let list = await classroom_service.getAll();
             res.send({
                 status: true,
                 result: list
@@ -24,7 +23,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let list = await classroomService.getClassByLevel(req.body.level);
+            let list = await classroom_service.getClassByLevel(req.body.level);
             res.send({
                 status: true,
                 result: list
@@ -44,7 +43,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let list = await classroomService.getClassByTeacher(req.body.teacher_ID);
+            let list = await classroom_service.getClassByTeacher(req.body.teacher_ID);
             res.send({
                 status: true,
                 result: list
@@ -64,7 +63,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await classroomService.updateAt(req.body.id, req.body.classroomInfo);
+            let result = await classroom_service.updateAt(req.body.id, req.body.classroomInfo);
             res.send({
                 status: true,
                 result: result
@@ -84,7 +83,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await classroomService.removeAt(req.body.id);
+            let result = await classroom_service.removeAt(req.body.id);
             res.send({
                 status: true,
                 result: result

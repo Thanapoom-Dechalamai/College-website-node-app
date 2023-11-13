@@ -1,11 +1,11 @@
 
-const leaveNoticeService = require('../../services/form/leave-notice-form.service');
+const leaveNotice_service = require("../../services/form/leave-notice-form.service");
 
 const method = {
     // Get all //
     async onGetAll(req, res) {
         try {
-            let list = await leaveNoticeService.getAll();
+            let list = await leaveNotice_service.getAll();
             res.send({
                 status: true,
                 result: list
@@ -24,7 +24,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let list = await leaveNoticeService.getOne(req.body.id);
+            let list = await leaveNotice_service.getOne(req.body.id);
             res.send({
                 status: true,
                 result: list
@@ -44,7 +44,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await leaveNoticeService.createOne(req.body);
+            let result = await leaveNotice_service.createOne(req.body);
             res.send({
                 status: true,
                 result: result
@@ -64,7 +64,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await leaveNoticeService.updateOne(req.body.id, req.body.leaveNoticeInfo);
+            let result = await leaveNotice_service.updateOne(req.body.id, req.body.leaveNoticeInfo);
             res.send({
                 status: true,
                 result: result
@@ -84,7 +84,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await leaveNoticeService.deleteOne(req.body.id);
+            let result = await leaveNotice_service.deleteOne(req.body.id);
             res.send({
                 status: true,
                 result: result

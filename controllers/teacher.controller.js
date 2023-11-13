@@ -1,9 +1,9 @@
-const teacherServices = require('../services/teacher.service');
+const teacher_service = require("../services/teacher.service");
 
 const methods = {
     async onGetAll(req, res) {
         try {
-            let list = await teacherServices.getAll();
+            let list = await teacher_service.getAll();
             res.send({
                 status: true,
                 result: list
@@ -23,7 +23,7 @@ const methods = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await teacherServices.createOne(req.body);
+            let result = await teacher_service.createOne(req.body);
             res.send({
                 status: true,
                 result: result
@@ -43,7 +43,7 @@ const methods = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await teacherServices.updateOne(req.body.id, req.body.teacherInfo);
+            let result = await teacher_service.updateOne(req.body.id, req.body.teacherInfo);
             res.send({
                 status: true,
                 result: result
@@ -63,7 +63,7 @@ const methods = {
                 res.status(401).send("Bad request");
             }
 
-            let result = await teacherServices.deleteOne(req.body.id);
+            let result = await teacher_service.deleteOne(req.body.id);
             res.send({
                 status: true,
                 result: result

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const controller = require('../../controllers/auth.controller');
+const controller = require("../../controllers/auth.controller");
 const { requireAuth } = require("../../helpers/auth.helper");
 
 /**
@@ -32,7 +32,7 @@ const { requireAuth } = require("../../helpers/auth.helper");
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/LoginInput'
+ *             $ref: "#/components/schemas/LoginInput"
  *     responses:
  *       200:
  *         description: Successfully
@@ -41,7 +41,7 @@ const { requireAuth } = require("../../helpers/auth.helper");
  *       500:
  *         description: Internal server error
  */
-router.post('/login', controller.onLogin);
+router.post("/login", controller.onLogin);
 
 /**
  * @swagger
@@ -61,7 +61,7 @@ router.post('/login', controller.onLogin);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ChangePasswordInput'
+ *             $ref: "#/components/schemas/ChangePasswordInput"
  *     responses:
  *       200:
  *         description: Successfully
@@ -70,6 +70,6 @@ router.post('/login', controller.onLogin);
  *       500:
  *         description: Internal server error
  */
-router.post('/changePassword', requireAuth, controller.onChangePassword);
+router.post("/changePassword", requireAuth, controller.onChangePassword);
 
 module.exports = router;

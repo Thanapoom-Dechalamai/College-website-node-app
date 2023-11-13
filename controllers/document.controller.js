@@ -1,12 +1,11 @@
-
-const documentService = require('../services/document.service');
+const document_service = require("../services/document.service");
 
 // THIS TABLE HAS BEEN REMOVED FROM THE DATABASE //
 
 const method = {
     async onGetAll(req, res) {
         try {
-            let list = await documentService.getAll();
+            let list = await document_service.getAll();
             console.log(list);
             res.send({
                 status: true,
@@ -27,7 +26,7 @@ const method = {
                 res.status(401).send("Bad request");
                 return;
             }
-            let list = await documentService.getOne(req.body.id);
+            let list = await document_service.getOne(req.body.id);
             console.log(list);
             res.send({
                 status: true,
@@ -46,7 +45,7 @@ const method = {
         try {
             if (!req.body) res.status(401).send("Bad request");
             console.log(req.body);
-            let result = await documentService.addOne(req.body);
+            let result = await document_service.addOne(req.body);
             res.send({
                 status: true,
                 result: result
@@ -63,7 +62,7 @@ const method = {
         try {
             if (!req.body || !req.body.id || !req.body.documentInfo) res.status(401).send("Bad request");
             console.log(`${req.body.id} + ${req.body.documentInfo}`);
-            let result = await documentService.updateAt(req.body.id, req.body.documentInfo);
+            let result = await document_service.updateAt(req.body.id, req.body.documentInfo);
             console.log(result);
             res.send({
                 status: true,
@@ -80,7 +79,7 @@ const method = {
     async onRemove(req, res) {
         try {
             if (!req.body || !req.body.id) res.status(401).send("Bad request");
-            let result = await documentService.removeAt(req.body.id);
+            let result = await document_service.removeAt(req.body.id);
             console.log(result);
             res.send({
                 status: true,
