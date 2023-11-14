@@ -32,10 +32,9 @@ const methods = {
 
     // Create //
     createOne(object) {
-        object.request_form_create_datetime = dayjs().toISOString();
-
         return new Promise(async (resolve, reject) => {
             try {
+                object.request_form_create_datetime = dayjs().toISOString();
 
                 const columns = ["request_form_student_ID", "request_form_student_title", "request_form_student_description", "request_form_attached_file"];
                 const values = columns.map(column => object[column]);
@@ -50,9 +49,29 @@ const methods = {
     },
 
     // Update //
-    updateOne(id, object) {
+    updateOne(id, updateAs, object) {
         return new Promise((resolve, reject) => {
-            const allowedColumns = ["request_form_teacher_ID", "request_form_teacher_status", "request_form_teacher_description", "request_form_teacher_change_datetime", "request_form_head_ID", "request_form_head_status", "request_form_head_description", "request_form_head_description"];
+            let allowedColumns;
+            switch (updateAs) {
+                // If student updates //
+                case 1:
+                    object.request_form_create_datetime = dayjs().toISOString();
+                    allowedColumns = ["request_form_title, request_form_description, request_form_create_datetime, request_form_attached_file"];
+                    break;
+                // If teacher evaluates //
+                case 2:
+                    object.request_form_teacher_change_datetime = dayjs().toISOString();
+                    allowedColumns = ["request_form_teacher_ID", "request_form_teacher_status", "request_form_teacher_description", "request_form_teacher_change_datetime"];
+                    break;
+                // If head evaluates //
+                case 3:
+                    object.request_form_head_change_datetime = dayjs().toISOString();
+                    allowedColumns = ["request_form_head_ID", "request_form_head_status", "request_form_head_description", "request_form_head_change_datetime"];
+                    break;
+                default:
+                    allowedColumns = ["request_form_student_ID", "request_form_title, request_form_description, request_form_create_datetime, request_form_attached_file", "request_form_teacher_ID", "request_form_teacher_status", "request_form_teacher_description", "request_form_teacher_change_datetime", "request_form_head_ID", "request_form_head_status", "request_form_head_description", "request_form_head_change_datetime"];
+                    break;
+            }
             const columns = [];
             const values = [];
 

@@ -60,11 +60,11 @@ const method = {
     // Update //
     async onUpdate(req, res) {
         try {
-            if (!req.body?.id || !req.body?.leaveNoticeInfo) {
+            if (!req.body?.id || !req.body?.updateAs || !req.body?.leaveNoticeInfo) {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await leaveNotice_service.updateOne(req.body.id, req.body.leaveNoticeInfo);
+            let result = await leaveNotice_service.updateOne(req.body.id, req.body.updateAs, req.body.leaveNoticeInfo);
             res.send({
                 status: true,
                 result: result

@@ -60,11 +60,11 @@ const method = {
     // Update //
     async onUpdate(req, res) {
         try {
-            if (!req.body?.id || !req.body?.requestFormInfo) {
+            if (!req.body?.id || !req.body?.updateAs || !req.body?.requestFormInfo) {
                 return res.status(401).send("Bad request");
             };
 
-            let result = await requestForm_service.updateOne(req.body.id, req.body.requestFormInfo);
+            let result = await requestForm_service.updateOne(req.body.id, req.body.updateAs, req.body.requestFormInfo);
             res.send({
                 status: true,
                 result: result
