@@ -41,7 +41,7 @@ const methods = {
                 const placeholders = new Array(values.length).fill("?").join(", ");
 
                 const sqlQuery = `INSERT INTO ${process.env.DB_TABLE_ANNOUNCEMENT} (${columns.join(", ")}) VALUES (${placeholders})`;
-                
+
                 const results = await db.query(sqlQuery, values);
                 resolve(results);
             } catch (error) {
@@ -65,7 +65,7 @@ const methods = {
             }
 
             if (columns.length === 0) {
-                return reject("No columns to update.");
+                return res.sendStatus(204);
             }
 
             const query = `UPDATE ${process.env.DB_TABLE_ANNOUNCEMENT} SET ${columns.join(", ")} WHERE announcement_ID = ?`;

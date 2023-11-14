@@ -5,10 +5,10 @@ const method = {
     // Get all //
     async onGetAll(req, res) {
         try {
-            let list = await requestForm_service.getAll();
+            let result = await requestForm_service.getAll();
             res.send({
                 status: true,
-                result: list
+                result: result
             });
         } catch (error) {
             res.send({
@@ -24,10 +24,10 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let list = await requestForm_service.getOne(req.body.id);
+            let result = await requestForm_service.getOne(req.body.id);
             res.send({
                 status: true,
-                result: list
+                result: result
             });
         } catch (error) {
             res.send({
