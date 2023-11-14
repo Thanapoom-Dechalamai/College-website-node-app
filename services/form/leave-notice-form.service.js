@@ -7,8 +7,8 @@ const methods = {
     getAll() {
         return new Promise(async (resolve, reject) => {
             try {
-                const sql = `SELECT * FROM ${process.env.DB_TABLE_LEAVE_NOTICE}`;
-                const results = await db.query(sql);
+                const sqlQuery = `SELECT * FROM ${process.env.DB_TABLE_LEAVE_NOTICE}`;
+                const results = await db.query(sqlQuery);
                 resolve(results);
             } catch (error) {
                 reject(error);
@@ -19,8 +19,8 @@ const methods = {
     getOne(id) {
         return new Promise(async (resolve, reject) => {
             try {
-                const sql = `SELECT * FROM ${process.env.DB_TABLE_LEAVE_NOTICE} WHERE leave_notice_ID = ?`;
-                const results = await db.query(sql, [id]);
+                const sqlQuery = `SELECT * FROM ${process.env.DB_TABLE_LEAVE_NOTICE} WHERE leave_notice_ID = ?`;
+                const results = await db.query(sqlQuery, [id]);
                 resolve(results);
             } catch (error) {
                 reject(error);
@@ -31,14 +31,16 @@ const methods = {
     // Create //
     createOne(object) {
         return new Promise(async (resolve, reject) => {
-            object.leave_notice_create_datetime = dayjs().toISOString();
-
             try {
+                object.leave_notice_create_datetime = dayjs().toISOString();
+
                 const columns = ["leave_notice_student_ID", "leave_notice_description", "leave_notice_choice", "leave_notice_start_datetime", "leave_notice_end_datetime", "leave_notice_create_datetime", "leave_notice_attached_file"];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill("?").join(", ");
-                const sql = `INSERT INTO ${process.env.DB_TABLE_LEAVE_NOTICE} (${columns.join(", ")}) VALUES (${placeholders})`;
-                const results = await db.query(sql, values);
+
+                const sqlQuery = `INSERT INTO ${process.env.DB_TABLE_LEAVE_NOTICE} (${columns.join(", ")}) VALUES (${placeholders})`;
+                
+                const results = await db.query(sqlQuery, values);
                 resolve(results);
             } catch (error) {
                 reject(error);
@@ -79,12 +81,15 @@ const methods = {
                         values.push(object[column]);
                     }
                 }
+
                 if (columns.length == 0) {
                     return res.sendStatus(204);
                 }
-                const sql = `UPDATE ${process.env.DB_TABLE_LEAVE_NOTICE} SET ${columns.join(", ")} WHERE leave_notice_ID = ?`;
+
+                const sqlQuery = `UPDATE ${process.env.DB_TABLE_LEAVE_NOTICE} SET ${columns.join(", ")} WHERE leave_notice_ID = ?`;
+
                 values.push(id);
-                const results = await db.query(sql, values);
+                const results = await db.query(sqlQuery, values);
                 resolve(results);
             } catch (error) {
                 reject(error);
@@ -96,8 +101,8 @@ const methods = {
     deleteOne(id) {
         return new Promise(async (resolve, reject) => {
             try {
-                const sql = `DELETE FROM ${process.env.DB_TABLE_LEAVE_NOTICE} WHERE leave_notice_ID = ?`;
-                const results = await db.query(sql, [id]);
+                const sqlQuery = `DELETE FROM ${process.env.DB_TABLE_LEAVE_NOTICE} WHERE leave_notice_ID = ?`;
+                const results = await db.query(sqlQuery, [id]);
                 resolve(results);
             } catch (error) {
                 reject(error);

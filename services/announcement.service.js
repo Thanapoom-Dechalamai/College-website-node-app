@@ -39,8 +39,10 @@ const methods = {
                 const columns = ["announcement_status", "announcement_title", "announcement_description", "announcement_image", "announcement_create_datetime"];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill("?").join(", ");
-                const sql = `INSERT INTO ${process.env.DB_TABLE_ANNOUNCEMENT} (${columns.join(", ")}) VALUES (${placeholders})`;
-                const results = await db.query(sql, values);
+
+                const sqlQuery = `INSERT INTO ${process.env.DB_TABLE_ANNOUNCEMENT} (${columns.join(", ")}) VALUES (${placeholders})`;
+                
+                const results = await db.query(sqlQuery, values);
                 resolve(results);
             } catch (error) {
                 reject(error);
