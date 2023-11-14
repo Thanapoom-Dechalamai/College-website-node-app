@@ -1,3 +1,4 @@
+const dayjs = require("dayjs");
 const db = require("./db.service");
 require("dotenv").config();
 
@@ -33,6 +34,8 @@ const methods = {
     createOne(object) {
         return new Promise(async (resolve, reject) => {
             try {
+                object.announcement_create_datetime = dayjs().toISOString();
+
                 const columns = ["announcement_status", "announcement_title", "announcement_description", "announcement_image", "announcement_create_datetime"];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill("?").join(", ");
@@ -48,7 +51,7 @@ const methods = {
     // Update //
     updateOne(id, object) {
         return new Promise((resolve, reject) => {
-            const allowedColumns = ["announcement_status", "announcement_title", "announcement_description", "announcement_image", "announcement_create_datetime"];
+            const allowedColumns = ["announcement_status", "announcement_title", "announcement_description", "announcement_image"];
             const columns = [];
             const values = [];
 

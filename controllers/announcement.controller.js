@@ -1,10 +1,10 @@
-const annuncement_service = require("../services/announcement.service");
+const announcement_service = require("../services/announcement.service");
 
 const method = {
     // Get all //
     async onGetAll(req, res) {
         try {
-            let list = await annuncement_service.getAll();
+            let list = await announcement_service.getAll();
             res.send({
                 status: true,
                 result: list
@@ -23,7 +23,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let list = await annuncement_service.getOne(req.body.id);
+            let list = await announcement_service.getOne(req.body.id);
             res.send({
                 status: true,
                 result: list
@@ -43,7 +43,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await annuncement_service.addOne(req.body);
+            let result = await announcement_service.addOne(req.body);
             res.send({
                 status: true,
                 result: result
@@ -63,7 +63,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await annuncement_service.updateAt(req.body.id, req.body.announcementInfo);
+            let result = await announcement_service.updateAt(req.body.id, req.body.announcementInfo);
             res.send({
                 status: true,
                 result: result
@@ -83,7 +83,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
             
-            let result = await annuncement_service.removeAt(req.body.id);
+            let result = await announcement_service.removeAt(req.body.id);
             res.send({
                 status: true,
                 result: result
