@@ -1,5 +1,6 @@
 const db = require("../db.service");
 require("dotenv").config();
+const { club_columns } = require("../../constants/club/club.constant");
 
 const methods = {
     // Get all //
@@ -10,7 +11,7 @@ const methods = {
 
     // Create //
     createOne(object) {
-        const columns = ["club_name", "club_major", "club_teacher", "club_description", "club_image", "club_status", "club_capacity"];
+        const columns = club_columns;
         const values = columns.map(column => object[column]);
         const placeholders = new Array(values.length).fill("?").join(", ");
 
@@ -20,7 +21,7 @@ const methods = {
 
     // Update //
     async updateOne(id, object) {
-        const allowedColumns = ["club_name", "club_major", "club_teacher", "club_description", "club_image", "club_status", "club_capacity"];
+        const allowedColumns = club_columns;
         const columns = [];
         const values = [];
 

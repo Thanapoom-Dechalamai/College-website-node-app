@@ -37,6 +37,25 @@ const method = {
             });
         }
     },
+    // Create multiple //
+    async onCreateMultiple(req, res) {
+        try {
+            if (!req.body?.club_ID || !req.body?.clubManagers) {
+                return handleResponse(res, 400, "Bad request");
+            }
+
+            let result = await clubManager_service.createMultiple(req.body.club_ID, req.body.clubManagers);
+            res.send({
+                status: true,
+                result: result
+            });
+        } catch (error) {
+            res.send({
+                status: false,
+                result: error
+            });
+        }
+    },
 
     // Update //
     async onUpdate(req, res) {
@@ -76,7 +95,26 @@ const method = {
                 result: error
             });
         }
-    }
+    },
+    // Delete multiple //
+    async onDeleteMultiple(req, res) {
+        try {
+            if (!req.body?.club_ID || !req.body?.clubManagers) {
+                return handleResponse(res, 400, "Bad request");
+            }
+
+            let result = await clubManager_service.deleteMultiple(req.body.club_ID, req.body.clubManagers);
+            res.send({
+                status: true,
+                result: result
+            });
+        } catch (error) {
+            res.send({
+                status: false,
+                result: error
+            });
+        }
+    },
 };
 
 module.exports = { ...method };

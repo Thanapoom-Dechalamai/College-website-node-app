@@ -1,15 +1,15 @@
 const db = require("./db.service");
 require("dotenv").config();
+const { student_primary_columns, student_names_columns, student_basic_columns, student_contacts_columns } = require("../constants/student.constant");
+
+const allColumns = student_primary_columns.concat(student_names_columns, student_basic_columns, student_contacts_columns);
 
 const methods = {
     // Get all //
     getAll() {
         return new Promise(async (resolve, reject) => {
             try {
-                let columns = ["primary_student_ID", "student_ID", "student_position", "student_first_name",
-                    "student_last_name", "student_nickname", "student_first_name_thai", "student_last_name_thai", "student_nickname_thai",
-                    "student_gender", "student_major", "student_level", "student_class", "student_phone", "student_line_ID", "student_image",
-                    "student_email"];
+                let columns = ["primary_student_ID", ...allColumns];
 
                 const result = await db.query(`SELECT ${columns.join(", ")} FROM ${process.env.DB_TABLE_STUDENT}`);
                 resolve(result);
@@ -22,10 +22,7 @@ const methods = {
     getOne(id) {
         return new Promise(async (resolve, reject) => {
             try {
-                let columns = ["primary_student_ID", "student_ID", "student_position", "student_first_name",
-                    "student_last_name", "student_nickname", "student_first_name_thai", "student_last_name_thai", "student_nickname_thai",
-                    "student_gender", "student_major", "student_level", "student_class", "student_phone", "student_line_ID", "student_image",
-                    "student_email"];
+                let columns = ["primary_student_ID", ...allColumns];
 
                 const result = await db.query(`SELECT ${columns.join(", ")} FROM ${process.env.DB_TABLE_STUDENT} WHERE student_ID = ${id}`);
                 resolve(result);
@@ -38,8 +35,7 @@ const methods = {
     getInfo() {
         return new Promise(async (resolve, reject) => {
             try {
-                let columns = ["student_ID", "student_first_name",
-                    "student_last_name", "student_first_name_thai", "student_last_name_thai"];
+                let columns = student_primary_columns.concat(student_names_columns)
 
                 const result = await db.query(`SELECT ${columns.join(", ")} FROM ${process.env.DB_TABLE_STUDENT}`);
                 resolve(result);
@@ -52,10 +48,7 @@ const methods = {
     getByAmount(major, amount) {
         return new Promise(async (resolve, reject) => {
             try {
-                let columns = ["primary_student_ID", "student_ID", "student_position", "student_first_name",
-                    "student_last_name", "student_nickname", "student_first_name_thai", "student_last_name_thai", "student_nickname_thai",
-                    "student_gender", "student_major", "student_level", "student_class", "student_phone", "student_line_ID", "student_image",
-                    "student_email"];
+                let columns = ["primary_student_ID", ...allColumns];
 
                 const result = await db.query(`SELECT ${columns.join(", ")} FROM ${process.env.DB_TABLE_STUDENT} WHERE student_major = ${major} ORDER BY student_ID LIMIT ${amount}`);
                 resolve(result);
@@ -68,10 +61,7 @@ const methods = {
     getByClass(level, classes) {
         return new Promise(async (resolve, reject) => {
             try {
-                let columns = ["primary_student_ID", "student_ID", "student_position", "student_first_name",
-                    "student_last_name", "student_nickname", "student_first_name_thai", "student_last_name_thai", "student_nickname_thai",
-                    "student_gender", "student_major", "student_level", "student_class", "student_phone", "student_line_ID", "student_image",
-                    "student_email"];
+                let columns = ["primary_student_ID", ...allColumns];
 
                 const result = await db.query(`SELECT ${columns.join(", ")} FROM ${process.env.DB_TABLE_STUDENT} WHERE student_level = ${level} && student_class = ${classes}`);
                 resolve(result);
@@ -85,16 +75,11 @@ const methods = {
     createOne(object) {
         return new Promise(async (resolve, reject) => {
             try {
-                const columns = [
-                    "student_ID", "student_position", "student_first_name", "student_last_name",
-                    "student_nickname", "student_first_name_thai", "student_last_name_thai", "student_nickname_thai",
-                    "student_gender", "student_major", "student_level", "student_class",
-                    "student_phone", "student_line_ID", "student_image", "student_email"
-                ];
+                const columns = allColumns;
 
                 const row = columns.map((element) => {
                     if (object[element] == null) {
-                        reject("You have a missing field");
+                        reject("You have a missing field.");
                     }
                     return object[element];
                 });
@@ -106,7 +91,7 @@ const methods = {
                     const result = await db.query(`INSERT INTO ${process.env.DB_TABLE_STUDENT} (${columns.join(", ")}) VALUES (${columns.map(() => "?").join(", ")})`, row);
                     resolve(result);
                 } else {
-                    reject("That email is already in use");
+                    reject("That email is already in use.");
                 }
             } catch (error) {
                 reject(error);
@@ -118,10 +103,7 @@ const methods = {
     updateOne(id, object) {
         return new Promise(async (resolve, reject) => {
             try {
-                let allowedColumns = ["student_ID", "student_position", "student_first_name",
-                    "student_last_name", "student_nickname", "student_first_name_thai", "student_last_name_thai", "student_nickname_thai",
-                    "student_gender", "student_major", "student_level", "student_class", "student_phone", "student_line_ID", "student_image",
-                    "student_email"];
+                let allowedColumns = allColumns;
 
                 let columns = [];
                 let values = [];

@@ -1,6 +1,7 @@
 const dayjs = require("dayjs");
 const db = require("../db.service");
 require("dotenv").config();
+const { leaveNotice_student_columns, leaveNotice_teacher_columns, leaveNotice_head_columns } = require("../../constants/form/leave-notice.constant");
 
 const methods = {
     // Get all //
@@ -34,12 +35,12 @@ const methods = {
             try {
                 object.leave_notice_create_datetime = dayjs().toISOString();
 
-                const columns = ["leave_notice_student_ID", "leave_notice_description", "leave_notice_choice", "leave_notice_start_datetime", "leave_notice_end_datetime", "leave_notice_create_datetime", "leave_notice_attached_file"];
+                const columns = ["leave_notice_student_ID", ...leaveNotice_student_columns];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill("?").join(", ");
 
                 const sqlQuery = `INSERT INTO ${process.env.DB_TABLE_LEAVE_NOTICE} (${columns.join(", ")}) VALUES (${placeholders})`;
-                
+
                 const results = await db.query(sqlQuery, values);
                 resolve(results);
             } catch (error) {
@@ -47,6 +48,7 @@ const methods = {
             }
         });
     },
+
 
     // Update //
     updateOne(id, updateAs, object) {
@@ -57,20 +59,20 @@ const methods = {
                     // If student updates //
                     case 1:
                         object.leave_notice_create_datetime = dayjs().toISOString();
-                        allowedColumns = ["leave_notice_description", "leave_notice_choice", "leave_notice_start_datetime", "leave_notice_end_datetime", "leave_notice_create_datetime", "leave_notice_attached_file"];
+                        allowedColumns = leaveNotice_student_columns;
                         break;
                     // If teacher evaluates //
                     case 2:
                         object.leave_notice_teacher_change_datetime = dayjs().toISOString();
-                        allowedColumns = ["leave_notice_teacher_ID", "leave_notice_teacher_status", "leave_notice_teacher_description", "leave_notice_teacher_change_datetime"];
+                        allowedColumns = leaveNotice_teacher_columns;
                         break;
                     // If head evaluates //
                     case 3:
                         object.leave_notice_head_change_datetime = dayjs().toISOString();
-                        allowedColumns = ["leave_notice_head_ID", "leave_notice_head_status", "leave_notice_head_description", "leave_notice_head_change_datetime"];
+                        allowedColumns = leaveNotice_head_columns;
                         break;
                     default:
-                        allowedColumns = ["leave_notice_student_ID", "leave_notice_description", "leave_notice_choice", "leave_notice_start_datetime", "leave_notice_end_datetime", "leave_notice_create_datetime", "leave_notice_attached_file", "leave_notice_teacher_ID", "leave_notice_teacher_status", "leave_notice_teacher_description", "leave_notice_teacher_change_datetime", "leave_notice_head_ID", "leave_notice_head_status", "leave_notice_head_description", "leave_notice_head_change_datetime"];
+                        allowedColumns = leaveNotice_student_columns.concat(leaveNotice_teacher_columns, leaveNotice_head_columns);
                         break;
                 }
                 const columns = [];

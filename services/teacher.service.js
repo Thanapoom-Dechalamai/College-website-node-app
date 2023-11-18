@@ -1,15 +1,15 @@
 const db = require("./db.service");
 require("dotenv").config();
+const { teacher_primary_columns, teacher_names_columns, teacher_basic_columns, teacher_contacts_columns } = require("../constants/teacher.constant");
+
+const allColumns = teacher_primary_columns.concat(teacher_names_columns, teacher_basic_columns, teacher_contacts_columns);
 
 const methods = {
     // Get all //
     getAll() {
         return new Promise(async (resolve, reject) => {
             try {
-                const column = ["primary_teacher_ID", "teacher_ID", "teacher_position", "teacher_first_name",
-                    "teacher_last_name", "teacher_nickname", "teacher_first_name_thai", "teacher_last_name_thai", "teacher_nickname_thai",
-                    "teacher_gender", "teacher_major", "teacher_phone", "teacher_line_ID", "teacher_image",
-                    "teacher_email"];
+                const column = ["primary_teacher_ID", ...allColumns];
 
                 const result = await db.query(`SELECT ${column.join(", ")} FROM ${process.env.DB_TABLE_TEACHER}`);
                 resolve(result);
@@ -23,10 +23,7 @@ const methods = {
         return new Promise(async (resolve, reject) => {
             try {
 
-                const column = ["primary_teacher_ID", "teacher_ID", "teacher_position", "teacher_first_name",
-                    "teacher_last_name", "teacher_nickname", "teacher_first_name_thai", "teacher_last_name_thai", "teacher_nickname_thai",
-                    "teacher_gender", "teacher_major", "teacher_phone", "teacher_line_ID", "teacher_image",
-                    "teacher_email"];
+                const column = ["primary_teacher_ID", ...allColumns];
 
                 const result = await db.query(`SELECT ${column.join(", ")} FROM ${process.env.DB_TABLE_TEACHER} WHERE teacher_ID = ${id}`);
                 resolve(result);
@@ -40,10 +37,7 @@ const methods = {
     createOne(object) {
         return new Promise(async (resolve, reject) => {
             try {
-                let columns = ["teacher_ID", "teacher_position", "teacher_first_name",
-                    "teacher_last_name", "teacher_nickname", "teacher_first_name_thai", "teacher_last_name_thai", "teacher_nickname_thai",
-                    "teacher_gender", "teacher_major", "teacher_phone", "teacher_line_ID", "teacher_image",
-                    "teacher_email"];
+                let columns = allColumns;
 
                 const row = columns.map((element) => {
                     if (object[element] == null) {
@@ -72,10 +66,7 @@ const methods = {
     updateOne(id, object) {
         return new Promise(async (resolve, reject) => {
             try {
-                let allowedColumns = ["teacher_ID", "teacher_position", "teacher_first_name",
-                    "teacher_last_name", "teacher_nickname", "teacher_first_name_thai", "teacher_last_name_thai", "teacher_nickname_thai",
-                    "teacher_gender", "teacher_major", "teacher_phone", "student_line_ID", "teacher_image",
-                    "teacher_email"];
+                let allowedColumns = allColumns;
 
                 let columns = [];
                 let values = [];

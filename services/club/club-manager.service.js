@@ -17,6 +17,20 @@ const methods = {
         const sqlQuery = `INSERT INTO ${process.env.DB_TABLE_CLUB_MANAGER} (${columns.join(", ")}) VALUES (${placeholders})`;
         return db.query(sqlQuery, values);
     },
+    // Create multiple //
+    createMultiple(club_ID, clubManagers) {
+        const columns = ["club_manager_club_ID", "club_manager_teacher_ID"];
+
+        const promises = clubManagers.map((clubManager) => {
+            const values = [club_ID, clubManager];
+            const placeholders = new Array(values.length).fill("?").join(", ");
+            const sqlQuery = `INSERT INTO ${process.env.DB_TABLE_CLUB_MANAGER} (${columns.join(", ")}) VALUES (${placeholders})`;
+
+            return db.query(sqlQuery, values);
+        });
+
+        return Promise.all(promises);
+    },
 
     // Update //
     async updateOne(id, object) {
@@ -43,6 +57,17 @@ const methods = {
     deleteOne(id) {
         const sqlQuery = `DELETE FROM ${process.env.DB_TABLE_CLUB_MANAGER} WHERE club_manager_ID = ?`;
         return db.query(sqlQuery, [id]);
+    },
+    // Delete multiple //
+    deleteMultiple(club_ID, clubManagers) {
+        const promises = clubManagers.map((clubManager) => {
+            const values = [club_ID, clubManager];
+            const sqlQuery = `DELETE FROM ${process.env.DB_TABLE_CLUB_MANAGER} WHERE club_manager_club_ID = ? AND club_manager_teacher_ID = ?`;
+
+            return db.query(sqlQuery, values);
+        });
+
+        return Promise.all(promises);
     }
 };
 
