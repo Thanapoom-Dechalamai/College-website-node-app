@@ -15,7 +15,6 @@ router.use("/major", require("./major"));
 
 router.use("/upload", require("./upload-files"));
 router.use("/forms", require("./forms"));
-router.use("/document", require("./document"));
 
 // Clubs //
 router.use("/club", require("./club/club"));

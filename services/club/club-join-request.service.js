@@ -1,3 +1,4 @@
+const dayjs = require("dayjs");
 const db = require("../db.service");
 require("dotenv").config();
 
@@ -10,6 +11,8 @@ const methods = {
 
     // Create //
     createOne(object) {
+        object.club_join_request_create_datetime = dayjs().toISOString();
+
         const columns = ["club_join_request_status", "club_join_request_club_ID", "club_join_request_student_ID", "club_join_request_create_datetime"];
         const values = columns.map(column => object[column]);
         const placeholders = new Array(values.length).fill("?").join(", ");
@@ -20,6 +23,8 @@ const methods = {
 
     // Update //
     async updateOne(id, object) {
+        object.club_join_request_status_change_datetime = dayjs().toISOString();
+
         const allowedColumns = ["club_join_request_status", "club_join_request_status_change_datetime"];
         const columns = [];
         const values = [];

@@ -53,7 +53,6 @@ const methods = {
                         reject(error);
                     });
             });
-
         });
     },
 };
