@@ -45,11 +45,11 @@ const methods = {
 
     updateAt(id, object) {
         return new Promise((resolve, reject) => {
-            const allowedcolumns = ["document_name", "document_extension", "document_location", "document_status"];
+            const allowedColumns = ["document_name", "document_extension", "document_location", "document_status"];
             const columns = [];
             const values = [];
 
-            for (const c of allowedcolumns) {
+            for (const c of allowedColumns) {
                 if (c in object) {
                     columns.push(`${c} = ?`);
                     values.push(object[c]);

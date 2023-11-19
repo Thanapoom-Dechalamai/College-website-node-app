@@ -19,6 +19,7 @@ router.use("/document", require("./document"));
 
 // Clubs //
 router.use("/club", require("./club/club"));
+router.use("/clubLeaveRequest", require("./club/club-leave-request"));
 router.use("/clubJoinRequest", require("./club/club-join-request"));
 router.use("/clubMembership", require("./club/club-membership"));
 router.use("/clubManager", require("./club/club-manager"));
