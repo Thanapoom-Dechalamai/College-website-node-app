@@ -108,5 +108,27 @@ router.post("/update", controller.onUpdate);
  *         description: Internal server error
  */
 router.post("/delete", controller.onDelete);
+/**
+ * @swagger
+ * /api/v1/clubMembership/deleteByID:
+ *   post:
+ *     summary: Delete a club
+ *     tags: [ClubMembership]
+ *     requestBody:
+ *       description: Club object to be deleted
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: "#/components/schemas/IDInput"
+ *     responses:
+ *       200:
+ *         description: Club deleted successfully
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Internal server error
+ */
+router.post("/deleteByID", controller.onDeleteByID);
 
 module.exports = router;

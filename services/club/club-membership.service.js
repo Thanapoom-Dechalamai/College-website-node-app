@@ -40,7 +40,16 @@ const methods = {
     },
 
     // Delete //
-    deleteOne(id) {
+    deleteOne(object) {
+        const columns = ["club_membership_club_ID", "club_membership_student_ID"];
+        const values = columns.map(column => object[column]);
+
+        const query = `DELETE FROM ${process.env.DB_TABLE_CLUB_MEMBERSHIP} WHERE ${columns.join(" = ? AND ")} = ?`;
+
+        return db.query(query, [...values]);
+    },
+    // Delete by the ID given //
+    deleteOneByID(id) {
         const query = `DELETE FROM ${process.env.DB_TABLE_CLUB_MEMBERSHIP} WHERE club_membership_ID = ?`;
         return db.query(query, [id]);
     }

@@ -61,11 +61,30 @@ const method = {
     // Delete //
     async onDelete(req, res) {
         try {
+            if (!req.body) {
+                return handleResponse(res, 400, "Bad request");
+            }
+
+            let result = await clubMembership_service.deleteOne(req.body);
+            res.send({
+                status: true,
+                result: result
+            });
+        } catch (error) {
+            res.send({
+                status: false,
+                result: error
+            });
+        }
+    },
+    // Delete by the ID given //
+    async onDeleteByID(req, res) {
+        try {
             if (!req.body?.id) {
                 return handleResponse(res, 400, "Bad request");
             }
 
-            let result = await clubMembership_service.deleteOne(req.body.id);
+            let result = await clubMembership_service.deleteOneByID(req.body.id);
             res.send({
                 status: true,
                 result: result
