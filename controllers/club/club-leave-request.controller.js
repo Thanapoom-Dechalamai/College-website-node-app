@@ -41,11 +41,11 @@ const method = {
     // Update //
     async onUpdate(req, res) {
         try {
-            if (!req.body?.id || !req.body?.clubJoinRequestInfo) {
+            if (!req.body?.id || !req.body?.clubLeaveRequestInfo) {
                 return handleResponse(res, 400, "Bad request");
             }
 
-            let result = await clubLeaveRequest_service.updateOne(req.body.id, req.body.clubJoinRequestInfo);
+            let result = await clubLeaveRequest_service.updateOne(req.body.id, req.body.clubLeaveRequestInfo);
             res.send({
                 status: true,
                 result: result
