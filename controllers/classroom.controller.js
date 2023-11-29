@@ -63,7 +63,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await classroom_service.updateAt(req.body.id, req.body.classroomInfo);
+            let result = await classroom_service.updateOne(req.body.id, req.body.classroomInfo);
             res.send({
                 status: true,
                 result: result
@@ -83,7 +83,7 @@ const method = {
                 return res.status(401).send("Bad request");
             }
 
-            let result = await classroom_service.removeAt(req.body.id);
+            let result = await classroom_service.deleteOne(req.body.id);
             res.send({
                 status: true,
                 result: result
