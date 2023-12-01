@@ -37,9 +37,7 @@ const methods = {
             try {
                 object.request_form_create_datetime = dayjs().toISOString();
 
-								console.log(object);
-
-                const columns = ["request_form_student_ID", ...requestForm_student_columns];
+                const columns = ["request_form_student_ID", "request_form_title, request_form_description, request_form_create_datetime, request_form_attached_file"];
                 const values = columns.map(column => object[column]);
                 const placeholders = new Array(values.length).fill("?").join(", ");
 
